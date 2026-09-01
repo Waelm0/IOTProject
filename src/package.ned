@@ -1,0 +1,3 @@
+package smarthome;
+
+@license(LGPL);

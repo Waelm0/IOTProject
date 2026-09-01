@@ -1,0 +1,16 @@
+# OMNeT++ build & simulation result outputs
+out/
+results/
+*.o
+*.d
+*.elf
+*.exe
+*.so
+*.dylib
+*.vec
+*.sca
+.cmdenv-log
+
+# OS & IDE metadata
+.DS_Store
+.idea/
