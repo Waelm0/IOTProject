@@ -1,0 +1,11 @@
+<config>
+    <interface hosts="gateway" names="wlan0" address="10.0.0.1" netmask="255.255.255.0"/>
+    <interface hosts="gateway" names="eth0" address="10.0.1.1" netmask="255.255.255.0"/>
+    <interface hosts="tempHumiditySensor* occupancyMotionSensor* smokeEnvSensor* actuator*" address="10.0.0.x" netmask="255.255.255.0"/>
+    <interface hosts="monitoringApp" address="10.0.1.x" netmask="255.255.255.0"/>
+
+    <route hosts="gateway" interface="wlan0" destination="10.0.0.0" netmask="255.255.255.0"/>
+    <route hosts="gateway" interface="eth0" destination="10.0.1.0" netmask="255.255.255.0"/>
+    <route hosts="tempHumiditySensor* occupancyMotionSensor* smokeEnvSensor* actuator*" destination="*" gateway="10.0.0.1"/>
+    <route hosts="monitoringApp" interface="eth0" destination="*" gateway="10.0.1.1"/>
+</config>
