@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for smarthome
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -KINET_4_7_0_PROJ=../../inet-4.7.0 -DINET_IMPORT -L$$\(INET_4_7_0_PROJ\)/src -lINET$$\(D\)
+#  opp_makemake -f --deep -KINET_4_6_0_PROJ=/home/maysam-habbash/iot-project/inet-workspace/inet-4.6.0 -DINET_IMPORT -L$$\(INET_4_6_0_PROJ\)/src -lINET$$\(D\)
 #
 
 # Name of target to be created (-o option)
@@ -23,7 +23,7 @@ INCLUDE_PATH =
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS = $(LDFLAG_LIBPATH)$(INET_4_7_0_PROJ)/src  -lINET$(D)
+LIBS = $(LDFLAG_LIBPATH)$(INET_4_6_0_PROJ)/src  -lINET$(D)
 
 # Output directory
 PROJECT_OUTPUT_DIR = ../out
@@ -40,7 +40,7 @@ MSGFILES =
 SMFILES =
 
 # Other makefile variables (-K)
-INET_4_7_0_PROJ=../../inet-4.7.0
+INET_4_6_0_PROJ=/home/maysam-habbash/iot-project/inet-workspace/inet-4.6.0
 
 #------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ include $(CONFIGFILE)
 # Simulation kernel and user interface libraries
 OMNETPP_LIBS = $(OPPMAIN_LIB) $(USERIF_LIBS) $(KERNEL_LIBS) $(SYS_LIBS)
 ifneq ($(PLATFORM),win32)
-LIBS += -Wl,-rpath,$(abspath $(INET_4_7_0_PROJ)/src)
+LIBS += -Wl,-rpath,$(abspath $(INET_4_6_0_PROJ)/src)
 endif
 
 COPTS = $(CFLAGS) $(IMPORT_DEFINES) -DINET_IMPORT $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)

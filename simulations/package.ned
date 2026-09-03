@@ -22,8 +22,8 @@ network SmartHomeNetwork
 {
     parameters:
         int numTempHumidity = default(4);
-        int numOccupancyMotion = default(3);
-        int numSmokeEnv = default(2);
+        int numOccupancyMotion = default(4);
+        int numSmokeEnv = default(4);
         int numActuators = default(3);
         @display("bgb=900,600");
     submodules:
@@ -51,10 +51,10 @@ network SmartHomeNetwork
 
         // --- Supporting infrastructure ---
         radioMedium: Ieee802154NarrowbandScalarRadioMedium {
-            @display("p=100,50");
+            @display("p=834,48");
         }
         configurator: Ipv4NetworkConfigurator {
-            @display("p=100,550");
+            @display("p=815,527");
         }
         visualizer: <default("IntegratedCanvasVisualizer")> like IIntegratedVisualizer {
             @display("p=700,50");
