@@ -1,0 +1,3268 @@
+file 30328810 1788620708                                        
+version 3
+run Scalability-0-20260905-18:05:07-992
+attr configname Scalability
+attr datetime 20260905-18:05:07
+attr datetimef 20260905-180507
+attr experiment Scalability
+attr inifile omnetpp.ini
+attr iterationvars $N=5
+attr iterationvarsd N=5
+attr iterationvarsf N=5-
+attr measurement $N=5
+attr network SmartHomeNetwork
+attr processid 992
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+itervar N 5
+config extends Baseline
+config sim-time-limit 1800s
+config repeat 5
+config seed-set 0
+config *.numTempHumidity "int(ceil(5 / 2))"
+config *.numOccupancyMotion "int(floor(5 / 2))"
+config *.numSmokeEnv 2
+config *.numActuators 1
+config **.app[*].result-recording-modes all
+config **.radio.**.result-recording-modes all
+config **.tempHumiditySensor[*].numApps 1
+config **.tempHumiditySensor[*].app[0].typename UdpBasicApp
+config **.tempHumiditySensor[*].app[0].destAddresses "\"gateway\""
+config **.tempHumiditySensor[*].app[0].destPort 1000
+config **.tempHumiditySensor[*].app[0].sendInterval 10s
+config **.tempHumiditySensor[*].app[0].messageLength 50B
+config **.tempHumiditySensor[*].app[0].startTime "uniform(0s, 1s)"
+config **.tempHumiditySensor[*].app[0].packetName "\"TempHumidityReport\""
+config **.occupancyMotionSensor[*].numApps 1
+config **.occupancyMotionSensor[*].app[0].typename UdpBasicApp
+config **.occupancyMotionSensor[*].app[0].destAddresses "\"gateway\""
+config **.occupancyMotionSensor[*].app[0].destPort 1000
+config **.occupancyMotionSensor[*].app[0].sendInterval 10s
+config **.occupancyMotionSensor[*].app[0].messageLength 50B
+config **.occupancyMotionSensor[*].app[0].startTime "uniform(0s, 1s)"
+config **.occupancyMotionSensor[*].app[0].packetName "\"OccupancyReport\""
+config **.smokeEnvSensor[*].numApps 1
+config **.smokeEnvSensor[*].app[0].typename UdpBasicApp
+config **.smokeEnvSensor[*].app[0].destAddresses "\"gateway\""
+config **.smokeEnvSensor[*].app[0].destPort 1001
+config **.smokeEnvSensor[*].app[0].sendInterval 30s
+config **.smokeEnvSensor[*].app[0].messageLength 50B
+config **.smokeEnvSensor[*].app[0].startTime "uniform(0s, 1s)"
+config **.smokeEnvSensor[*].app[0].packetName "\"AlarmEvent\""
+config **.actuator[*].numApps 1
+config **.actuator[*].app[0].typename UdpSink
+config **.actuator[*].app[0].localPort 1002
+config **.gateway.numApps 2
+config **.gateway.app[0].typename UdpSink
+config **.gateway.app[0].localPort 1000
+config **.gateway.app[1].typename UdpSink
+config **.gateway.app[1].localPort 1001
+config **.monitoringApp.numApps 1
+config **.monitoringApp.app[0].typename UdpSink
+config **.monitoringApp.app[0].localPort 2000
+config network SmartHomeNetwork
+config sim-time-limit 100s
+config **.hasStatus true
+config **.tempHumiditySensor[*].wlan[0].typename Ieee802154NarrowbandInterface
+config **.occupancyMotionSensor[*].wlan[0].typename Ieee802154NarrowbandInterface
+config **.smokeEnvSensor[*].wlan[0].typename Ieee802154NarrowbandInterface
+config **.actuator[*].wlan[0].typename Ieee802154NarrowbandInterface
+config **.gateway.wlan[0].typename Ieee802154NarrowbandInterface
+config **.gateway.hasUdp true
+config **.radioMedium.backgroundNoise.power -110dBm
+config **.arp.typename GlobalArp
+config **.wlan[*].radio.transmitter.power 50mW
+config **.wlan[*].radio.receiver.sensitivity -100dBm
+config **.tempHumiditySensor[*].mobility.typename StationaryMobility
+config **.tempHumiditySensor[*].mobility.initialX "320m + parentIndex() * 30m"
+config **.tempHumiditySensor[*].mobility.initialY 240m
+config **.occupancyMotionSensor[*].mobility.typename StationaryMobility
+config **.occupancyMotionSensor[*].mobility.initialX "320m + parentIndex() * 30m"
+config **.occupancyMotionSensor[*].mobility.initialY 260m
+config **.smokeEnvSensor[*].mobility.typename StationaryMobility
+config **.smokeEnvSensor[*].mobility.initialX "320m + parentIndex() * 30m"
+config **.smokeEnvSensor[*].mobility.initialY 280m
+config **.actuator[*].mobility.typename StationaryMobility
+config **.actuator[*].mobility.initialX "320m + parentIndex() * 30m"
+config **.actuator[*].mobility.initialY 300m
+config **.gateway.mobility.typename StationaryMobility
+config **.gateway.mobility.initialX 400m
+config **.gateway.mobility.initialY 280m
+config *.configurator.config "xmldoc(\"topology.xml\")"
+config **.energyStorage.typename SimpleEpEnergyStorage
+config **.energyStorage.nominalCapacity 10000J
+config **.energyStorage.initialCapacity 10000J
+config **.energyConsumer.typename StateBasedEpEnergyConsumer
+config **.energyStorage.residualEnergyCapacity.result-recording-modes +last
+
+vector 0 SmartHomeNetwork.tempHumiditySensor[0].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 1 SmartHomeNetwork.tempHumiditySensor[0].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 2 SmartHomeNetwork.tempHumiditySensor[0].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 3 SmartHomeNetwork.tempHumiditySensor[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 4 SmartHomeNetwork.tempHumiditySensor[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 5 SmartHomeNetwork.tempHumiditySensor[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 6 SmartHomeNetwork.tempHumiditySensor[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 7 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 8 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 9 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 10 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 11 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 12 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 13 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 14 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 15 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 16 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 17 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 18 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 19 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 20 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 21 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 22 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 23 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 24 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 25 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 26 SmartHomeNetwork.tempHumiditySensor[0].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 27 SmartHomeNetwork.tempHumiditySensor[0].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 28 SmartHomeNetwork.tempHumiditySensor[0].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 29 SmartHomeNetwork.tempHumiditySensor[0].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 30 SmartHomeNetwork.tempHumiditySensor[0].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 31 SmartHomeNetwork.tempHumiditySensor[0].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 32 SmartHomeNetwork.tempHumiditySensor[0].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 33 SmartHomeNetwork.tempHumiditySensor[0].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 34 SmartHomeNetwork.tempHumiditySensor[0].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 35 SmartHomeNetwork.tempHumiditySensor[0].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 36 SmartHomeNetwork.tempHumiditySensor[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 37 SmartHomeNetwork.tempHumiditySensor[0].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 38 SmartHomeNetwork.tempHumiditySensor[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 39 SmartHomeNetwork.tempHumiditySensor[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 40 SmartHomeNetwork.tempHumiditySensor[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 41 SmartHomeNetwork.tempHumiditySensor[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 42 SmartHomeNetwork.tempHumiditySensor[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 43 SmartHomeNetwork.tempHumiditySensor[0].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 44 SmartHomeNetwork.tempHumiditySensor[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 45 SmartHomeNetwork.tempHumiditySensor[0].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 46 SmartHomeNetwork.tempHumiditySensor[0].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 47 SmartHomeNetwork.tempHumiditySensor[1].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 48 SmartHomeNetwork.tempHumiditySensor[1].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 49 SmartHomeNetwork.tempHumiditySensor[1].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 50 SmartHomeNetwork.tempHumiditySensor[1].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 51 SmartHomeNetwork.tempHumiditySensor[1].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 52 SmartHomeNetwork.tempHumiditySensor[1].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 53 SmartHomeNetwork.tempHumiditySensor[1].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 54 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 55 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 56 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 57 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 58 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 59 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 60 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 61 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 62 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 63 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 64 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 65 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 66 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 67 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 68 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 69 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 70 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 71 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 72 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 73 SmartHomeNetwork.tempHumiditySensor[1].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 74 SmartHomeNetwork.tempHumiditySensor[1].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 75 SmartHomeNetwork.tempHumiditySensor[1].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 76 SmartHomeNetwork.tempHumiditySensor[1].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 77 SmartHomeNetwork.tempHumiditySensor[1].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 78 SmartHomeNetwork.tempHumiditySensor[1].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 79 SmartHomeNetwork.tempHumiditySensor[1].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 80 SmartHomeNetwork.tempHumiditySensor[1].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 81 SmartHomeNetwork.tempHumiditySensor[1].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 82 SmartHomeNetwork.tempHumiditySensor[1].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 83 SmartHomeNetwork.tempHumiditySensor[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 84 SmartHomeNetwork.tempHumiditySensor[1].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 85 SmartHomeNetwork.tempHumiditySensor[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 86 SmartHomeNetwork.tempHumiditySensor[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 87 SmartHomeNetwork.tempHumiditySensor[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 88 SmartHomeNetwork.tempHumiditySensor[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 89 SmartHomeNetwork.tempHumiditySensor[1].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 90 SmartHomeNetwork.tempHumiditySensor[1].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 91 SmartHomeNetwork.tempHumiditySensor[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 92 SmartHomeNetwork.tempHumiditySensor[1].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 93 SmartHomeNetwork.tempHumiditySensor[1].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 94 SmartHomeNetwork.tempHumiditySensor[2].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 95 SmartHomeNetwork.tempHumiditySensor[2].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 96 SmartHomeNetwork.tempHumiditySensor[2].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 97 SmartHomeNetwork.tempHumiditySensor[2].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 98 SmartHomeNetwork.tempHumiditySensor[2].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 99 SmartHomeNetwork.tempHumiditySensor[2].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 100 SmartHomeNetwork.tempHumiditySensor[2].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 101 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 102 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 103 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 104 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 105 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 106 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 107 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 108 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 109 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 110 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 111 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 112 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 113 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 114 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 115 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 116 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 117 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 118 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 119 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 120 SmartHomeNetwork.tempHumiditySensor[2].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 121 SmartHomeNetwork.tempHumiditySensor[2].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 122 SmartHomeNetwork.tempHumiditySensor[2].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 123 SmartHomeNetwork.tempHumiditySensor[2].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 124 SmartHomeNetwork.tempHumiditySensor[2].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 125 SmartHomeNetwork.tempHumiditySensor[2].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 126 SmartHomeNetwork.tempHumiditySensor[2].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 127 SmartHomeNetwork.tempHumiditySensor[2].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 128 SmartHomeNetwork.tempHumiditySensor[2].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 129 SmartHomeNetwork.tempHumiditySensor[2].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 130 SmartHomeNetwork.tempHumiditySensor[2].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 131 SmartHomeNetwork.tempHumiditySensor[2].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 132 SmartHomeNetwork.tempHumiditySensor[2].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 133 SmartHomeNetwork.tempHumiditySensor[2].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 134 SmartHomeNetwork.tempHumiditySensor[2].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 135 SmartHomeNetwork.tempHumiditySensor[2].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 136 SmartHomeNetwork.tempHumiditySensor[2].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 137 SmartHomeNetwork.tempHumiditySensor[2].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 138 SmartHomeNetwork.tempHumiditySensor[2].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 139 SmartHomeNetwork.tempHumiditySensor[2].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 140 SmartHomeNetwork.tempHumiditySensor[2].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 141 SmartHomeNetwork.occupancyMotionSensor[0].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 142 SmartHomeNetwork.occupancyMotionSensor[0].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 143 SmartHomeNetwork.occupancyMotionSensor[0].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 144 SmartHomeNetwork.occupancyMotionSensor[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 145 SmartHomeNetwork.occupancyMotionSensor[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 146 SmartHomeNetwork.occupancyMotionSensor[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 147 SmartHomeNetwork.occupancyMotionSensor[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 148 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 149 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 150 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 151 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 152 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 153 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 154 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 155 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 156 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 157 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 158 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 159 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 160 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 161 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 162 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 163 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 164 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 165 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 166 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 167 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 168 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 169 SmartHomeNetwork.occupancyMotionSensor[0].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 170 SmartHomeNetwork.occupancyMotionSensor[0].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 171 SmartHomeNetwork.occupancyMotionSensor[0].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 172 SmartHomeNetwork.occupancyMotionSensor[0].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 173 SmartHomeNetwork.occupancyMotionSensor[0].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 174 SmartHomeNetwork.occupancyMotionSensor[0].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 175 SmartHomeNetwork.occupancyMotionSensor[0].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 176 SmartHomeNetwork.occupancyMotionSensor[0].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 177 SmartHomeNetwork.occupancyMotionSensor[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 178 SmartHomeNetwork.occupancyMotionSensor[0].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 179 SmartHomeNetwork.occupancyMotionSensor[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 180 SmartHomeNetwork.occupancyMotionSensor[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 181 SmartHomeNetwork.occupancyMotionSensor[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 182 SmartHomeNetwork.occupancyMotionSensor[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 183 SmartHomeNetwork.occupancyMotionSensor[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 184 SmartHomeNetwork.occupancyMotionSensor[0].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 185 SmartHomeNetwork.occupancyMotionSensor[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 186 SmartHomeNetwork.occupancyMotionSensor[0].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 187 SmartHomeNetwork.occupancyMotionSensor[0].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 188 SmartHomeNetwork.occupancyMotionSensor[1].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 189 SmartHomeNetwork.occupancyMotionSensor[1].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 190 SmartHomeNetwork.occupancyMotionSensor[1].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 191 SmartHomeNetwork.occupancyMotionSensor[1].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 192 SmartHomeNetwork.occupancyMotionSensor[1].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 193 SmartHomeNetwork.occupancyMotionSensor[1].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 194 SmartHomeNetwork.occupancyMotionSensor[1].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 195 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 196 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 197 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 198 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 199 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 200 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 201 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 202 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 203 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 204 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 205 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 206 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 207 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 208 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 209 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 210 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 211 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 212 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 213 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 214 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 215 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 216 SmartHomeNetwork.occupancyMotionSensor[1].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 217 SmartHomeNetwork.occupancyMotionSensor[1].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 218 SmartHomeNetwork.occupancyMotionSensor[1].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 219 SmartHomeNetwork.occupancyMotionSensor[1].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 220 SmartHomeNetwork.occupancyMotionSensor[1].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 221 SmartHomeNetwork.occupancyMotionSensor[1].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 222 SmartHomeNetwork.occupancyMotionSensor[1].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 223 SmartHomeNetwork.occupancyMotionSensor[1].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 224 SmartHomeNetwork.occupancyMotionSensor[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 225 SmartHomeNetwork.occupancyMotionSensor[1].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 226 SmartHomeNetwork.occupancyMotionSensor[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 227 SmartHomeNetwork.occupancyMotionSensor[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 228 SmartHomeNetwork.occupancyMotionSensor[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 229 SmartHomeNetwork.occupancyMotionSensor[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 230 SmartHomeNetwork.occupancyMotionSensor[1].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 231 SmartHomeNetwork.occupancyMotionSensor[1].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 232 SmartHomeNetwork.occupancyMotionSensor[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 233 SmartHomeNetwork.occupancyMotionSensor[1].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 234 SmartHomeNetwork.occupancyMotionSensor[1].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 235 SmartHomeNetwork.smokeEnvSensor[0].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 236 SmartHomeNetwork.smokeEnvSensor[0].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 237 SmartHomeNetwork.smokeEnvSensor[0].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 238 SmartHomeNetwork.smokeEnvSensor[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 239 SmartHomeNetwork.smokeEnvSensor[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 240 SmartHomeNetwork.smokeEnvSensor[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 241 SmartHomeNetwork.smokeEnvSensor[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 242 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 243 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 244 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 245 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 246 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 247 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 248 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 249 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 250 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 251 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 252 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 253 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 254 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 255 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 256 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 257 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 258 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 259 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 260 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 261 SmartHomeNetwork.smokeEnvSensor[0].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 262 SmartHomeNetwork.smokeEnvSensor[0].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 263 SmartHomeNetwork.smokeEnvSensor[0].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 264 SmartHomeNetwork.smokeEnvSensor[0].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 265 SmartHomeNetwork.smokeEnvSensor[0].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 266 SmartHomeNetwork.smokeEnvSensor[0].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 267 SmartHomeNetwork.smokeEnvSensor[0].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 268 SmartHomeNetwork.smokeEnvSensor[0].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 269 SmartHomeNetwork.smokeEnvSensor[0].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 270 SmartHomeNetwork.smokeEnvSensor[0].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 271 SmartHomeNetwork.smokeEnvSensor[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 272 SmartHomeNetwork.smokeEnvSensor[0].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 273 SmartHomeNetwork.smokeEnvSensor[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 274 SmartHomeNetwork.smokeEnvSensor[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 275 SmartHomeNetwork.smokeEnvSensor[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 276 SmartHomeNetwork.smokeEnvSensor[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 277 SmartHomeNetwork.smokeEnvSensor[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 278 SmartHomeNetwork.smokeEnvSensor[0].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 279 SmartHomeNetwork.smokeEnvSensor[0].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 280 SmartHomeNetwork.smokeEnvSensor[0].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 281 SmartHomeNetwork.smokeEnvSensor[0].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 282 SmartHomeNetwork.smokeEnvSensor[1].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 283 SmartHomeNetwork.smokeEnvSensor[1].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 284 SmartHomeNetwork.smokeEnvSensor[1].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 285 SmartHomeNetwork.smokeEnvSensor[1].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 286 SmartHomeNetwork.smokeEnvSensor[1].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 287 SmartHomeNetwork.smokeEnvSensor[1].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 288 SmartHomeNetwork.smokeEnvSensor[1].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 289 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 290 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 291 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 292 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 293 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 294 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 295 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 296 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 297 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 298 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 299 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 300 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 301 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 302 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 303 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 304 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 305 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 306 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 307 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 308 SmartHomeNetwork.smokeEnvSensor[1].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 309 SmartHomeNetwork.smokeEnvSensor[1].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 310 SmartHomeNetwork.smokeEnvSensor[1].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 311 SmartHomeNetwork.smokeEnvSensor[1].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 312 SmartHomeNetwork.smokeEnvSensor[1].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 313 SmartHomeNetwork.smokeEnvSensor[1].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 314 SmartHomeNetwork.smokeEnvSensor[1].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 315 SmartHomeNetwork.smokeEnvSensor[1].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 316 SmartHomeNetwork.smokeEnvSensor[1].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 317 SmartHomeNetwork.smokeEnvSensor[1].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 318 SmartHomeNetwork.smokeEnvSensor[1].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 319 SmartHomeNetwork.smokeEnvSensor[1].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 320 SmartHomeNetwork.smokeEnvSensor[1].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 321 SmartHomeNetwork.smokeEnvSensor[1].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 322 SmartHomeNetwork.smokeEnvSensor[1].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 323 SmartHomeNetwork.smokeEnvSensor[1].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 324 SmartHomeNetwork.smokeEnvSensor[1].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 325 SmartHomeNetwork.smokeEnvSensor[1].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 326 SmartHomeNetwork.smokeEnvSensor[1].app[0] packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 327 SmartHomeNetwork.smokeEnvSensor[1].app[0] rcvdPkLifetime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "received packet lifetime"
+attr unit s
+vector 328 SmartHomeNetwork.smokeEnvSensor[1].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 329 SmartHomeNetwork.actuator[0].energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 330 SmartHomeNetwork.actuator[0].energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 331 SmartHomeNetwork.actuator[0].energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 332 SmartHomeNetwork.actuator[0].lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 333 SmartHomeNetwork.actuator[0].lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 334 SmartHomeNetwork.actuator[0].lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 335 SmartHomeNetwork.actuator[0].lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 336 SmartHomeNetwork.actuator[0].wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 337 SmartHomeNetwork.actuator[0].wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 338 SmartHomeNetwork.actuator[0].wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 339 SmartHomeNetwork.actuator[0].wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 340 SmartHomeNetwork.actuator[0].wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 341 SmartHomeNetwork.actuator[0].wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 342 SmartHomeNetwork.actuator[0].wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 343 SmartHomeNetwork.actuator[0].wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 344 SmartHomeNetwork.actuator[0].wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 345 SmartHomeNetwork.actuator[0].wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 346 SmartHomeNetwork.actuator[0].wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 347 SmartHomeNetwork.actuator[0].wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 348 SmartHomeNetwork.actuator[0].wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 349 SmartHomeNetwork.actuator[0].wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 350 SmartHomeNetwork.actuator[0].wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 351 SmartHomeNetwork.actuator[0].wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 352 SmartHomeNetwork.actuator[0].wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 353 SmartHomeNetwork.actuator[0].wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 354 SmartHomeNetwork.actuator[0].wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 355 SmartHomeNetwork.actuator[0].wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 356 SmartHomeNetwork.actuator[0].wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 357 SmartHomeNetwork.actuator[0].wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 358 SmartHomeNetwork.actuator[0].ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 359 SmartHomeNetwork.actuator[0].ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 360 SmartHomeNetwork.actuator[0].ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 361 SmartHomeNetwork.actuator[0].ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 362 SmartHomeNetwork.actuator[0].ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 363 SmartHomeNetwork.actuator[0].ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 364 SmartHomeNetwork.actuator[0].ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 365 SmartHomeNetwork.actuator[0].udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 366 SmartHomeNetwork.actuator[0].udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 367 SmartHomeNetwork.actuator[0].udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 368 SmartHomeNetwork.actuator[0].udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 369 SmartHomeNetwork.actuator[0].udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 370 SmartHomeNetwork.actuator[0].udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 371 SmartHomeNetwork.actuator[0].app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 372 SmartHomeNetwork.actuator[0].app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 373 SmartHomeNetwork.actuator[0].app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 374 SmartHomeNetwork.actuator[0].app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 375 SmartHomeNetwork.gateway.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 376 SmartHomeNetwork.gateway.energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 377 SmartHomeNetwork.gateway.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 378 SmartHomeNetwork.gateway.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 379 SmartHomeNetwork.gateway.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 380 SmartHomeNetwork.gateway.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 381 SmartHomeNetwork.gateway.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 382 SmartHomeNetwork.gateway.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 383 SmartHomeNetwork.gateway.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 384 SmartHomeNetwork.gateway.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 385 SmartHomeNetwork.gateway.wlan[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 386 SmartHomeNetwork.gateway.wlan[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 387 SmartHomeNetwork.gateway.wlan[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 388 SmartHomeNetwork.gateway.wlan[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 389 SmartHomeNetwork.gateway.wlan[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 390 SmartHomeNetwork.gateway.wlan[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 391 SmartHomeNetwork.gateway.wlan[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 392 SmartHomeNetwork.gateway.wlan[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 393 SmartHomeNetwork.gateway.wlan[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 394 SmartHomeNetwork.gateway.wlan[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 395 SmartHomeNetwork.gateway.wlan[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 396 SmartHomeNetwork.gateway.wlan[0].mac packetDropNotAddressToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 397 SmartHomeNetwork.gateway.wlan[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 398 SmartHomeNetwork.gateway.wlan[0].mac packetDropQueueOverflow:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsQueueOverflow(packetDropped)
+attr title "packet drop: queue overflow, packetBytes"
+vector 399 SmartHomeNetwork.gateway.wlan[0].mac packetDropRetryLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsRetryLimitReached(packetDropped)
+attr title "packet drop: retry limit reached, packetBytes"
+vector 400 SmartHomeNetwork.gateway.wlan[0].mac packetDropBackoffLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsCongestion(packetDropped)
+attr title "packet drop: backoff limit reached, packetBytes"
+vector 401 SmartHomeNetwork.gateway.wlan[0].radio.energyConsumer powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 402 SmartHomeNetwork.gateway.wlan[0].radio radioMode:vector ETV
+attr enum OFF,SLEEP,RECEIVER,TRANSMITTER,TRANSCEIVER,SWITCHING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source radioModeChanged
+attr title "Radio mode"
+attr type enum
+vector 403 SmartHomeNetwork.gateway.wlan[0].radio receptionState:vector ETV
+attr enum UNDEFINED,IDLE,BUSY,RECEIVING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source receptionStateChanged
+attr title "Radio reception state"
+attr type enum
+vector 404 SmartHomeNetwork.gateway.wlan[0].radio transmissionState:vector ETV
+attr enum UNDEFINED,IDLE,TRANSMITTING
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source transmissionStateChanged
+attr title "Radio transmission state"
+attr type enum
+vector 405 SmartHomeNetwork.gateway.wlan[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 406 SmartHomeNetwork.gateway.wlan[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 407 SmartHomeNetwork.gateway.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 408 SmartHomeNetwork.gateway.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 409 SmartHomeNetwork.gateway.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 410 SmartHomeNetwork.gateway.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 411 SmartHomeNetwork.gateway.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 412 SmartHomeNetwork.gateway.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 413 SmartHomeNetwork.gateway.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 414 SmartHomeNetwork.gateway.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 415 SmartHomeNetwork.gateway.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 416 SmartHomeNetwork.gateway.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 417 SmartHomeNetwork.gateway.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 418 SmartHomeNetwork.gateway.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 419 SmartHomeNetwork.gateway.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 420 SmartHomeNetwork.gateway.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 421 SmartHomeNetwork.gateway.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 422 SmartHomeNetwork.gateway.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 423 SmartHomeNetwork.gateway.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 424 SmartHomeNetwork.gateway.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 425 SmartHomeNetwork.gateway.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 426 SmartHomeNetwork.gateway.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 427 SmartHomeNetwork.gateway.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 428 SmartHomeNetwork.gateway.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 429 SmartHomeNetwork.gateway.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 430 SmartHomeNetwork.gateway.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 431 SmartHomeNetwork.gateway.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 432 SmartHomeNetwork.gateway.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 433 SmartHomeNetwork.gateway.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 434 SmartHomeNetwork.gateway.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 435 SmartHomeNetwork.gateway.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 436 SmartHomeNetwork.gateway.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 437 SmartHomeNetwork.gateway.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 438 SmartHomeNetwork.gateway.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 439 SmartHomeNetwork.gateway.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 440 SmartHomeNetwork.gateway.udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 441 SmartHomeNetwork.gateway.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 442 SmartHomeNetwork.gateway.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 443 SmartHomeNetwork.gateway.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 444 SmartHomeNetwork.gateway.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 445 SmartHomeNetwork.gateway.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 446 SmartHomeNetwork.gateway.app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 447 SmartHomeNetwork.gateway.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 448 SmartHomeNetwork.gateway.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 449 SmartHomeNetwork.gateway.app[1] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 450 SmartHomeNetwork.gateway.app[1] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 451 SmartHomeNetwork.gateway.app[1] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 452 SmartHomeNetwork.gateway.app[1] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+vector 453 SmartHomeNetwork.monitoringApp.energyStorage powerConsumption:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerConsumptionChanged
+attr title "Power consumption"
+attr unit W
+vector 454 SmartHomeNetwork.monitoringApp.energyStorage powerGeneration:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source powerGenerationChanged
+attr title "Power generation"
+attr unit W
+vector 455 SmartHomeNetwork.monitoringApp.energyStorage residualEnergyCapacity:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source residualEnergyCapacityChanged
+attr title "Residual energy capacity"
+attr unit J
+vector 456 SmartHomeNetwork.monitoringApp.ethernet encapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source encapPk
+attr title "packets encapsulated, packetBytes"
+vector 457 SmartHomeNetwork.monitoringApp.ethernet decapPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source decapPk
+attr title "packets decapsulated, packetBytes"
+vector 458 SmartHomeNetwork.monitoringApp.ethernet pauseSent:vector ETV
+attr recordingmode vector
+attr title "pause sent"
+vector 459 SmartHomeNetwork.monitoringApp.lo[0].lo rcvdPkFromHl:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packets received from higher layer, packetBytes"
+vector 460 SmartHomeNetwork.monitoringApp.lo[0].lo passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 461 SmartHomeNetwork.monitoringApp.lo[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 462 SmartHomeNetwork.monitoringApp.lo[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 463 SmartHomeNetwork.monitoringApp.eth[0].queue queueLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + count(packetPushStarted) - count(packetPulled) - count(packetRemoved) - count(packetDropped)))"
+attr title "queue length"
+attr unit pk
+vector 464 SmartHomeNetwork.monitoringApp.eth[0].queue queueBitLength:vector ETV
+attr autoWarmupFilter false
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "warmup(atomic(constant0(packetPushEnded) + sum(packetLength(packetPushStarted)) - sum(packetLength(packetPulled)) - sum(packetLength(packetRemoved)) - sum(packetLength(packetDropped))))"
+attr title "queue bit length"
+attr unit b
+vector 465 SmartHomeNetwork.monitoringApp.eth[0].queue queueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(packetPulled)
+attr title "queueing times"
+attr unit s
+vector 466 SmartHomeNetwork.monitoringApp.eth[0].queue incomingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPushStarted)
+attr title "incoming packet lengths"
+attr unit b
+vector 467 SmartHomeNetwork.monitoringApp.eth[0].queue incomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPushStarted)
+attr title "incoming datarate"
+attr unit bps
+vector 468 SmartHomeNetwork.monitoringApp.eth[0].queue outgoingPacketLengths:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetPulled)
+attr title "outgoing packet lengths"
+attr unit b
+vector 469 SmartHomeNetwork.monitoringApp.eth[0].queue outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetPulled)
+attr title "outgoing datarate"
+attr unit bps
+vector 470 SmartHomeNetwork.monitoringApp.eth[0].queue droppedPacketLengthsQueueOverflow:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source packetLength(packetDropReasonIsQueueOverflow(packetDropped))
+attr title "dropped packet lengths: queue overflow"
+attr unit b
+vector 471 SmartHomeNetwork.monitoringApp.eth[0].queue flowQueueingTime:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source queueingTime(demuxFlow(packetPulled))
+attr title "flow queueing times"
+attr unit s
+vector 472 SmartHomeNetwork.monitoringApp.eth[0].queue flowIncomingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPushStarted)))
+attr title "flow specific incoming data rate"
+attr unit bps
+vector 473 SmartHomeNetwork.monitoringApp.eth[0].queue flowOutgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(flowPacketLength(demuxFlow(packetPulled)))
+attr title "flow specific outgoing data rate"
+attr unit bps
+vector 474 SmartHomeNetwork.monitoringApp.eth[0].mac transmitting:vector ETV
+attr interpolationmode sample-hold
+attr recordingmode vector
+attr source "count(transmissionStarted) - count(transmissionEnded)"
+attr title "transmitting state"
+attr type int
+vector 475 SmartHomeNetwork.monitoringApp.eth[0].mac throughput:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(transmissionEnded)
+attr title throughput
+attr unit bps
+vector 476 SmartHomeNetwork.monitoringApp.eth[0].mac utilization:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source "100 * utilization(count(transmissionStarted) - count(transmissionEnded))"
+attr title utilization
+attr unit %
+vector 477 SmartHomeNetwork.monitoringApp.eth[0].mac txPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToLower
+attr title "packets transmitted, packetBytes"
+vector 478 SmartHomeNetwork.monitoringApp.eth[0].mac rxPkOk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source rxPkOk
+attr title "packets received OK, packetBytes"
+vector 479 SmartHomeNetwork.monitoringApp.eth[0].mac passedUpPk:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSentToUpper
+attr title "packets passed to higher layer, packetBytes"
+vector 480 SmartHomeNetwork.monitoringApp.eth[0].mac txPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units sent"
+vector 481 SmartHomeNetwork.monitoringApp.eth[0].mac rxPausePkUnits:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr title "pause units received"
+vector 482 SmartHomeNetwork.monitoringApp.eth[0].mac packetReceivedFromUpper:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceivedFromUpper
+attr title "packet bytes from higher layer, packetBytes"
+vector 483 SmartHomeNetwork.monitoringApp.eth[0].mac packetDropIncorrectlyReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packet drop: incorrectly received, packetBytes"
+vector 484 SmartHomeNetwork.monitoringApp.eth[0].mac packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drop: interface down, packetBytes"
+vector 485 SmartHomeNetwork.monitoringApp.eth[0].mac packetDropNotAddressedToUs:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNotAddressedToUs(packetDropped)
+attr title "packet drop: not addressed to us, packetBytes"
+vector 486 SmartHomeNetwork.monitoringApp.eth[0] packetDropInterfaceDown:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsInterfaceDown(packetDropped)
+attr title "packet drops: interface down, packetBytes"
+vector 487 SmartHomeNetwork.monitoringApp.eth[0] packetDropNoCarrier:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoCarrier(packetDropped)
+attr title "packet drops: no carrier, packetBytes"
+vector 488 SmartHomeNetwork.monitoringApp.ipv4.ip packetDropAddressResolutionFailed:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsAddressResolutionFailed(packetDropped)
+attr title "packet drop: address resolution failed, packetBytes"
+vector 489 SmartHomeNetwork.monitoringApp.ipv4.ip packetDropHopLimitReached:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsHopLimitReached(packetDropped)
+attr title "packet drop: hop limit reached, packetBytes"
+vector 490 SmartHomeNetwork.monitoringApp.ipv4.ip packetDropForwardingDisabled:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsForwardingDisabled(packetDropped)
+attr title "packet drop: forwarding disabled, packetBytes"
+vector 491 SmartHomeNetwork.monitoringApp.ipv4.ip packetDropLifetimeExpired:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsLifetimeExpired(packetDropped)
+attr title "packet drop: lifetime expired, packetBytes"
+vector 492 SmartHomeNetwork.monitoringApp.ipv4.ip packetDropNoInterfaceFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoInterfaceFound(packetDropped)
+attr title "packet drop: no interface found, packetBytes"
+vector 493 SmartHomeNetwork.monitoringApp.ipv4.ip packetDropNoRouteFound:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsNoRouteFound(packetDropped)
+attr title "packet drop: no route found, packetBytes"
+vector 494 SmartHomeNetwork.monitoringApp.ipv4.ip packetDropUndefined:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetDropReasonIsUndefined(packetDropped)
+attr title "packet drop: undefined, packetBytes"
+vector 495 SmartHomeNetwork.monitoringApp.udp packetSent:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetSent
+attr title "packets sent, packetBytes"
+vector 496 SmartHomeNetwork.monitoringApp.udp outgoingDataRate:vector ETV
+attr interpolationmode linear
+attr recordingmode vector
+attr source throughput(packetSent)
+attr title "outgoing datarate"
+attr unit bps
+vector 497 SmartHomeNetwork.monitoringApp.udp packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 498 SmartHomeNetwork.monitoringApp.udp passedUpPk:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetSentToUpper
+attr title "packets passed up, count"
+vector 499 SmartHomeNetwork.monitoringApp.udp droppedPkWrongPort:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsNoPortFound(packetDropped)
+attr title "packets dropped (wrong port), count"
+vector 500 SmartHomeNetwork.monitoringApp.udp droppedPkBadChecksum:vector(count) ETV
+attr interpolationmode none
+attr recordingmode vector(count)
+attr source packetDropReasonIsIncorrectlyReceived(packetDropped)
+attr title "packets dropped (checksum error), count"
+vector 501 SmartHomeNetwork.monitoringApp.app[0] packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr recordingmode vector(packetBytes)
+attr source packetReceived
+attr title "packets received, packetBytes"
+vector 502 SmartHomeNetwork.monitoringApp.app[0] throughput:vector ETV
+attr recordingmode vector
+attr source throughput(packetReceived)
+attr title throughput
+attr unit bps
+vector 503 SmartHomeNetwork.monitoringApp.app[0] endToEndDelay:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source dataAge(packetReceived)
+attr title "end-to-end delay"
+attr unit s
+vector 504 SmartHomeNetwork.monitoringApp.app[0] rcvdPkSeqNo:vector ETV
+attr interpolationmode none
+attr recordingmode vector
+attr source appPkSeqNo(packetReceived)
+attr title "received packet sequence number"
+0	135751 146934 0 54810 0 1450.848395799234 4906 0 0.1 35.015 1.6245850000000004
+2	282685 151485 0 54810 0 1450.848395799234 3545 9997.0365581582 10000 35444786.88200372 354395747927.8616
+7	434170 7936 0 54640 0 1450.595212616389 297 0 1 146 146
+8	442106 8228 0 54640 0 1450.595212616389 297 0 624 91104 56848896
+9	450334 4970 149 54640 0.595212616389 1450.595212616389 146 0.000128 0.002368 0.18764799999999998 0.00031454822399999997
+10	455304 4386 147 54638 0.592844616389 1450.592844616389 146 624 624 91104 56848896
+11	459690 246703 147 54638 0.1 1450.5 14505 0 6240.000000000001 904800.0000000001 5645952000.000002
+12	706393 4386 149 54640 0.595212616389 1450.595212616389 146 624 624 91104 56848896
+13	710779 246703 149 54640 0.1 1450.5 14505 0 6240.000000000001 904800.0000000001 5645952000.000002
+18	957482 39137 46 54785 0.302111539234 1450.84820174409 1377 5 87 64121 5300137
+19	996619 529 669 48492 10.850027799234 1280.857531799234 19 5 87 177 8019
+23	997148 151831 0 54810 0 1450.848395799234 4905 0 0.1 35.015 1.6245850000000004
+24	1148979 8215 0 54650 0 1450.598380616389 295 0 3 732 1902
+25	1157194 94925 0 54810 0 1450.848395799234 3399 0 3 6360 15660
+26	1252119 16376 149 54650 0.595212616389 1450.598380616389 584 0 2 584 876
+36	1268495 4240 145 54636 0.592844616389 1450.592844616389 146 58 58 8468 491144
+37	1272735 244818 145 54636 0.1 1450.5 14505 0 4640 672800 3121792000
+39	1517553 9 0 0 0 0 1 0 0 0 0
+40	1517562 9 0 0 0 0 1 0 0 0 0
+41	1517571 9 0 0 0 0 1 0 0 0 0
+44	1517580 4240 143 54635 0.592844616389 1450.592844616389 146 50 50 7300 365000
+47	1521820 155213 0 54811 0 1450.848395799234 5070 0 0.1 36.881 1.8129670000000002
+49	1677033 155542 0 54811 0 1450.848395799234 3562 9997.031469359124 10000 35614755.89154315 356095128194.6036
+54	1832575 7943 0 54768 0 1450.84503374409 297 0 1 146 146
+55	1840518 8235 0 54768 0 1450.84503374409 297 0 624 91104 56848896
+56	1848753 4971 279 54768 0.84471374409 1450.84503374409 146 0.000128 0.002368 0.187968 0.00032128614399999997
+57	1853724 4241 277 54766 0.84426574409 1450.84426574409 146 624 624 91104 56848896
+58	1857965 246851 277 54766 0.1 1450.8 14508 0 6240.000000000001 904800.0000000001 5645952000.000002
+59	2104816 4241 279 54768 0.84471374409 1450.84503374409 146 624 624 91104 56848896
+60	2109057 246851 279 54768 0.1 1450.8 14508 0 6240.000000000001 904800.0000000001 5645952000.000002
+65	2355908 38813 47 54757 0.302111539234 1450.629005563862 1360 5 87 62560 5163920
+66	2394721 500 670 48493 10.850027799234 1280.857531799234 18 5 5 90 450
+70	2395221 155204 0 54811 0 1450.848395799234 5069 0 0.1 36.881 1.8129670000000002
+71	2550425 8935 0 54782 0 1450.84820174409 333 0 3 827 2149
+72	2559360 94871 0 54811 0 1450.848395799234 3397 0 3 6299 15481
+73	2654231 17816 279 54782 0.84471374409 1450.84820174409 660 0 2 660 990
+83	2672047 4095 275 54764 0.84426574409 1450.84426574409 146 58 58 8468 491144
+84	2676142 244966 275 54764 0.1 1450.8 14508 0 4640 672800 3121792000
+86	2921108 9 0 0 0 0 1 0 0 0 0
+87	2921117 9 0 0 0 0 1 0 0 0 0
+88	2921126 9 0 0 0 0 1 0 0 0 0
+91	2921135 4095 273 54763 0.84426574409 1450.84426574409 146 50 50 7300 365000
+94	2925230 151894 0 54812 0 1450.848395799234 4907 0 0.1 35.114000000000004 1.6345480000000003
+96	3077124 154993 0 54812 0 1450.848395799234 3545 9997.036277306268 10000 35444788.54354329 354395781152.6473
+101	3232117 8474 0 54573 0 1440.859993619849 295 0 1 145 145
+102	3240591 8764 0 54573 0 1440.859993619849 295 0 624 90480 56459520
+103	3249355 5227 408 54573 0.858393619849 1440.859993619849 145 0.000128 0.012992 0.25574399999999997 0.001106468864
+104	3254582 4502 406 54570 0.857945619849 1440.857945619849 145 624 624 90480 56459520
+105	3259084 259563 406 54570 0.1 1440.8 14408 0 6240.000000000001 898560.0000000001 5607014400.000002
+106	3518647 4502 408 54573 0.858393619849 1440.859993619849 145 624 624 90480 56459520
+107	3523149 259563 408 54573 0.1 1440.8 14408 0 6240.000000000001 898560.0000000001 5607014400.000002
+112	3782712 40541 48 54786 0.302111539234 1450.84820174409 1378 5 87 64126 5300162
+113	3823253 518 671 48494 10.850027799234 1280.857531799234 18 5 87 172 7994
+117	3823771 156791 0 54812 0 1450.848395799234 4906 0 0.1 35.114000000000004 1.6345480000000003
+118	3980562 8572 0 54584 0 1440.863161619849 297 0 3 737 1915
+119	3989134 98295 0 54812 0 1450.848395799234 3398 0 3 6355 15647
+120	4087429 17084 408 54584 0.858393619849 1440.863161619849 588 0 2 588 882
+130	4104513 4357 404 54568 0.857945619849 1440.857945619849 145 58 58 8410 487780
+131	4108870 257691 404 54568 0.1 1440.8 14408 0 4640 668160 3100262400
+133	4366561 10 0 0 0 0 1 0 0 0 0
+134	4366571 10 0 0 0 0 1 0 0 0 0
+135	4366581 10 0 0 0 0 1 0 0 0 0
+138	4366591 4356 402 54567 0.857945619849 1440.857945619849 145 50 50 7250 362500
+141	4370947 160452 0 54814 0 1450.848531737257 5017 0 0.1 36.769 1.8125330000000004
+143	4531399 158954 0 54814 0 1450.848531737257 3546 9997.031520519864 10000 35454773.8825556 354495487985.4968
+148	4690353 8532 0 54803 0 1450.848339737257 297 0 1 146 146
+149	4698885 8824 0 54803 0 1450.848339737257 297 0 624 91104 56848896
+150	4707709 5311 344 54803 0.851987737257 1450.848339737257 146 0.000448 0.021312 0.590592 0.003456098304
+151	4713020 4533 293 54781 0.847251737257 1450.847251737257 146 624 624 91104 56848896
+152	4717553 261359 293 54781 0.1 1450.8 14508 0 6240.000000000001 904800.0000000001 5645952000.000002
+153	4978912 4533 344 54803 0.851987737257 1450.848339737257 146 624 624 91104 56848896
+154	4983445 261359 344 54803 0.1 1450.8 14508 0 6240.000000000001 904800.0000000001 5645952000.000002
+159	5244804 40705 36 54789 0.302111038888 1450.848202244436 1378 5 87 64126 5300162
+160	5285509 30 47739 47739 1260.859669417043 1260.859669417043 1 5 5 5 25
+164	5285539 160442 0 54814 0 1450.848531737257 5016 0 0.1 36.769 1.8125330000000004
+165	5445981 9576 0 54803 0 1450.848339737257 332 0 3 825 2145
+166	5455557 98134 0 54803 0 1450.848339737257 3381 0 3 6267 15417
+167	5553691 19092 344 54814 0.851987737257 1450.848531737257 658 0 2 659 989
+177	5572783 4387 291 54779 0.847251737257 1450.847251737257 146 58 58 8468 491144
+178	5577170 259474 291 54779 0.1 1450.8 14508 0 4640 672800 3121792000
+180	5836644 10 0 0 0 0 1 0 0 0 0
+181	5836654 10 0 0 0 0 1 0 0 0 0
+182	5836664 10 0 0 0 0 1 0 0 0 0
+185	5836674 4387 289 54778 0.847251737257 1450.847251737257 146 50 50 7300 365000
+188	5841061 157119 0 54825 0 1450.848747611555 4907 0 0.1 35.02 1.6246100000000003
+190	5998180 158959 0 54825 0 1450.848747611555 3546 9997.036554652856 10000 35454784.06216777 354495691539.4989
+195	6157139 8530 0 54704 0 1450.625291696397 297 0 1 146 146
+196	6165669 8822 0 54704 0 1450.625291696397 297 0 624 91104 56848896
+197	6174491 5262 214 54704 0.625611696397 1450.625291696397 146 0.000128 0.002368 0.180608 0.000296361984
+198	6179753 4532 212 54702 0.623563696397 1450.623563696397 146 624 624 91104 56848896
+199	6184285 261225 212 54702 0.1 1450.6 14506 0 6240.000000000001 904800.0000000001 5645952000.000002
+200	6445510 4532 214 54704 0.625611696397 1450.625291696397 146 624 624 91104 56848896
+201	6450042 261225 214 54704 0.1 1450.6 14506 0 6240.000000000001 904800.0000000001 5645952000.000002
+206	6711267 40676 37 54790 0.302111038888 1450.848202244436 1377 5 87 64121 5300137
+207	6751943 578 661 54826 10.850027611555 1450.848747611555 20 5 87 182 8044
+211	6752521 157109 0 54825 0 1450.848747611555 4906 0 0.1 35.02 1.6246100000000003
+212	6909630 8510 0 54714 0 1450.628459696397 295 0 3 732 1902
+213	6918140 98682 0 54825 0 1450.848747611555 3400 0 3 6362 15664
+214	7016822 16960 214 54714 0.625611696397 1450.628459696397 584 0 2 584 876
+224	7033782 4386 210 54700 0.623563696397 1450.623563696397 146 58 58 8468 491144
+225	7038168 259340 210 54700 0.1 1450.6 14506 0 4640 672800 3121792000
+227	7297508 10 0 0 0 0 1 0 0 0 0
+228	7297518 10 0 0 0 0 1 0 0 0 0
+229	7297528 10 0 0 0 0 1 0 0 0 0
+232	7297538 4386 208 54699 0.623563696397 1450.623563696397 146 50 50 7300 365000
+235	7301924 125767 0 54827 0 1450.848747669811 3934 0 0.1 25.305 0.6622950000000001
+237	7427691 153411 0 54827 0 1450.848747669811 3449 9997.06254325902 10000 34484972.67095438 344799463255.0109
+242	7581102 2890 0 54252 0 1440.386109708223 103 0 1 49 49
+243	7583992 2988 0 54252 0 1440.386109708223 103 0 624 30576 19079424
+244	7586980 1763 84 54252 0.384829708223 1440.386109708223 49 0.000128 0.002368 0.061632 0.000100888576
+245	7588743 1518 82 54250 0.384381708223 1440.384381708223 49 624 624 30576 19079424
+246	7590261 258039 82 54250 0.1 1440.3 14403 0 6240.000000000001 299520.00000000006 1869004800.0000007
+247	7848300 1518 84 54252 0.384829708223 1440.386109708223 49 624 624 30576 19079424
+248	7849818 258039 84 54252 0.1 1440.3 14403 0 6240.000000000001 299520.00000000006 1869004800.0000007
+253	8107857 45859 31 54793 0.302110605255 1450.848202678069 1572 5 87 73050 6036780
+254	8153716 518 664 48487 10.850027669811 1280.857531669811 18 5 87 172 7994
+258	8154234 125757 0 54827 0 1450.848747669811 3933 0 0.1 25.305 0.6622950000000001
+259	8279991 2870 0 54262 0 1440.389277708223 101 0 3 247 641
+260	8282861 97412 0 54827 0 1450.848747669811 3397 0 3 6647 16525
+261	8380273 5680 84 54262 0.384829708223 1440.389277708223 196 0 2 196 294
+271	8385953 1469 80 54248 0.384381708223 1440.384381708223 49 58 58 2842 164836
+272	8387422 257415 80 54248 0.1 1440.3 14403 0 4640 222720 1033420800
+274	8644837 10 0 0 0 0 1 0 0 0 0
+275	8644847 10 0 0 0 0 1 0 0 0 0
+276	8644857 10 0 0 0 0 1 0 0 0 0
+279	8644867 1469 78 54247 0.384381708223 1440.384381708223 49 50 50 2450 122500
+282	8646336 125680 0 54809 0 1450.848395669811 3931 0 0.1 25.298000000000002 0.6622660000000001
+284	8772016 153342 0 54809 0 1450.848395669811 3448 9997.062546779016 10000 34474975.5657435 344699521142.28925
+289	8925358 2890 0 54188 0 1440.298302605255 103 0 1 49 49
+290	8928248 2988 0 54188 0 1440.298302605255 103 0 624 30576 19079424
+291	8931236 1763 19 54188 0.298942605255 1440.298302605255 49 0.000128 0.002368 0.054911999999999996 9.1283456e-05
+292	8932999 1518 17 54186 0.297534605255 1440.297534605255 49 624 624 30576 19079424
+293	8934517 258023 17 54186 0.1 1440.2 14402 0 6240.000000000001 299520.00000000006 1869004800.0000007
+294	9192540 1518 19 54188 0.298942605255 1440.298302605255 49 624 624 30576 19079424
+295	9194058 258023 19 54188 0.1 1440.2 14402 0 6240.000000000001 299520.00000000006 1869004800.0000007
+300	9452081 45860 96 54794 0.387997708223 1450.848202678069 1572 5 87 73050 6036780
+301	9497941 518 665 48488 10.850027669811 1280.857531669811 18 5 87 172 7994
+305	9498459 125670 0 54809 0 1450.848395669811 3930 0 0.1 25.298000000000002 0.6622660000000001
+306	9624129 2870 0 54198 0 1440.301470605255 101 0 3 247 641
+307	9626999 97382 0 54809 0 1450.848395669811 3396 0 3 6645 16521
+308	9724381 5680 19 54198 0.298942605255 1440.301470605255 196 0 2 196 294
+318	9730061 1469 15 54184 0.297534605255 1440.297534605255 49 58 58 2842 164836
+319	9731530 257399 15 54184 0.1 1440.2 14402 0 4640 222720 1033420800
+321	9988929 10 0 0 0 0 1 0 0 0 0
+322	9988939 10 0 0 0 0 1 0 0 0 0
+323	9988949 10 0 0 0 0 1 0 0 0 0
+326	9988959 1469 13 54183 0.297534605255 1440.297534605255 49 50 50 2450 122500
+329	9990428 111716 0 54813 0 1450.848395839588 3443 0 0.01 20.400000000000002 0.17619
+331	10102144 152208 0 54813 0 1450.848395839588 3399 9997.075670930162 10000 33985069.467019856 339801398940.4665
+336	10254352 50 0 0 0 0 5 0 0 0 0
+337	10254402 50 0 0 0 0 5 0 0 0 0
+347	10254452 49256 33 54801 0.302110938819 1450.848203011634 1669 5 87 77471 6401317
+348	10303708 545 673 48496 10.850027839588 1280.857531839588 19 5 87 259 15563
+352	10304253 111706 0 54813 0 1450.848395839588 3442 0 0.01 20.400000000000002 0.17619
+353	10415959 30 0 0 0 0 3 0 2 2 4
+354	10415989 98469 0 54813 0 1450.848395839588 3396 1 3 6792 16962
+368	10514458 10 0 0 0 0 1 0 0 0 0
+369	10514468 10 0 0 0 0 1 0 0 0 0
+370	10514478 10 0 0 0 0 1 0 0 0 0
+375	10514488 366989 0 54823 0 1450.848746771662 11825 0 0.1 104.67200000000001 8.548144000000002
+377	10881477 150307 0 54823 0 1450.848746771662 3380 9997.049070122286 10000 33795045.06614523 337900911064.99884
+385	11031784 50 0 0 0 0 5 0 0 0 0
+386	11031834 50 0 0 0 0 5 0 0 0 0
+397	11031884 30 21597 21597 560.862522647421 560.862522647421 1 87 87 87 7569
+401	11031914 366979 0 54823 0 1450.848746771662 11824 0 0.1 104.67200000000001 8.548144000000002
+402	11398893 48453 0 54823 0 1450.848746771662 1691 0 3 4222 10976
+403	11447346 96912 0 54823 0 1450.848746771662 3379 0 3 4225 9295
+404	11544258 96846 39 54823 0.302111503404 1450.848746771662 3376 0 2 3376 5064
+407	11641104 50 0 0 0 0 5 0 0 0 0
+408	11641154 50 0 0 0 0 5 0 0 0 0
+418	11641204 20 0 0 0 0 2 0 0 0 0
+441	11641224 24520 41 54798 0.302111503404 1450.848202771662 826 58 58 47908 2778664
+442	11665744 25248 0 54798 0 1450.848202771662 827 0 826 341551 188194601
+443	11690992 10 0 0 0 0 1 0 0 0 0
+444	11691002 10 0 0 0 0 1 0 0 0 0
+445	11691012 21581 176 54799 0.598381643961 1450.848202771662 728 50 50 36400 1820000
+446	11712593 266370 176 54799 0.1 1450.8 14508 0 12000.000000000002 2908000.0000000005 25552000000.000004
+447	11978963 31891 176 54799 0.598381643961 1450.848202771662 728 0.003296839893 0.026736839893 3.872053457827 0.025247457806272876
+448	12010854 21759 176 54799 0.598381643961 1450.848202771662 728 0 145 52635 5091675
+449	12032613 2939 42 54275 0.302111503404 1440.389278606372 98 50 50 4900 245000
+450	12035552 258039 42 54211 0.1 1440.3 14403 0 8000.000000000001 384000.00000000006 3072000000.000001
+451	12293591 4304 42 54275 0.302111503404 1440.389278606372 98 0.0032968981489999998 0.005536898149 0.42709601860199997 0.0019149118806702033
+452	12297895 2919 42 54275 0.302111503404 1440.389278606372 98 0 48 2352 76048
+455	12300814 14 0 0 0 0 1 10000 10000 10000 1e+08
+463	12300828 50 0 0 0 0 5 0 0 0 0
+464	12300878 50 0 0 0 0 5 0 0 0 0
+474	12300928 20 0 0 0 0 2 0 0 0 0
+498	12300948 10 0 0 0 0 1 0 0 0 0
+499	12300958 10 0 0 0 0 1 0 0 0 0
+500	12300968 10 0 0 0 0 1 0 0 0 0
+0	12300978 36632 54831 68056 1450.848747799234 1790.861787674993 1184 0 0.1 8.339 0.3797230000000001
+2	12337610 37377 54831 68056 1450.848747799234 1790.861787674993 856 9996.341953076524 9997.0365546382 8557164.98323319 85543309088.14313
+7	12374987 1904 55043 67751 1460.592844616389 1790.593292616389 68 0 1 34 34
+8	12376891 1972 55043 67751 1460.592844616389 1790.593292616389 68 0 624 21216 13238784
+9	12378863 1190 55045 67751 1460.592972616389 1790.593292616389 34 0.000128 0.002368 0.046592 8.1412096e-05
+10	12380053 1054 55043 67749 1460.592844616389 1790.592844616389 34 624 624 21216 13238784
+11	12381107 62770 55043 68068 1450.6 1800 3495 0 6240.000000000001 218400.00000000003 1362816000.0000005
+12	12443877 1054 55045 67751 1460.592972616389 1790.593292616389 34 624 624 21216 13238784
+13	12444931 62770 55045 68068 1450.6 1800 3495 0 6240.000000000001 218400.00000000003 1362816000.0000005
+16	12507701 309303 68068 68068 0.1 1800 18000 0 0 0 0
+17	12817004 309303 68068 68068 0.1 1800 18000 0 0 0 0
+18	13126307 9666 54868 68059 1450.85538574409 1790.861787674993 329 5 87 15421 1275617
+19	13135973 262 54834 63435 1450.848747799234 1670.848107799234 9 5 87 127 7769
+23	13136235 37816 54831 68056 1450.848747799234 1790.861787674993 1184 0 0.1 8.339 0.3797230000000001
+24	13174051 1972 55045 67761 1460.592972616389 1790.596460616389 68 2 3 170 442
+25	13176023 23751 54831 68056 1450.848747799234 1790.861787674993 822 0 3 1541 3789
+26	13199774 3944 55045 67761 1460.592972616389 1790.596460616389 136 0 2 136 204
+36	13203718 1020 55041 67747 1460.592844616389 1790.592844616389 34 58 58 1972 114376
+37	13204738 62315 55041 68068 1450.6 1800 3495 0 4640 162400 753536000
+43	13267053 309303 68068 68068 0.1 1800 18000 0 0 0 0
+44	13576356 1020 55040 67746 1460.592844616389 1790.592844616389 34 50 50 1700 85000
+47	13577376 39930 54832 68057 1450.848747799234 1790.861787674993 1265 0 0.1 9.328000000000001 0.4789460000000001
+49	13617306 38598 54832 68057 1450.848747799234 1790.861787674993 865 9996.33418594198 9997.031465839125 8647130.048991825 86442610536.55214
+54	13655904 1904 55171 67879 1460.84426574409 1790.84535374409 68 0 1 34 34
+55	13657808 1972 55171 67879 1460.84426574409 1790.84535374409 68 0 624 21216 13238784
+56	13659780 1190 55173 67879 1460.84663374409 1790.84535374409 34 0.000128 0.002368 0.034432 5.4747136e-05
+57	13660970 1020 55171 67877 1460.84426574409 1790.84426574409 34 624 624 21216 13238784
+58	13661990 62716 55171 68068 1450.9 1800 3492 0 6240.000000000001 218400.00000000003 1362816000.0000005
+59	13724706 1020 55173 67879 1460.84663374409 1790.84535374409 34 624 624 21216 13238784
+60	13725726 62716 55173 68068 1450.9 1800 3492 0 6240.000000000001 218400.00000000003 1362816000.0000005
+63	13788442 309303 68068 68068 0.1 1800 18000 0 0 0 0
+64	14097745 309303 68068 68068 0.1 1800 18000 0 0 0 0
+65	14407048 9410 54939 68060 1450.859972237603 1790.861787674993 319 5 87 14633 1207471
+66	14416458 232 54835 63436 1450.848747799234 1670.848107799234 8 5 5 40 200
+70	14416690 39930 54832 68057 1450.848747799234 1790.861787674993 1265 0 0.1 9.328000000000001 0.4789460000000001
+71	14456620 2464 54853 67893 1450.85221774409 1790.84852174409 88 2 3 220 572
+72	14459084 23721 54832 68057 1450.848747799234 1790.861787674993 821 0 3 1509 3695
+73	14482805 4928 54853 67893 1450.85221774409 1790.84852174409 176 0 2 176 264
+83	14487733 986 55169 67875 1460.84426574409 1790.84426574409 34 58 58 1972 114376
+84	14488719 62261 55169 68068 1450.9 1800 3492 0 4640 162400 753536000
+90	14550980 309303 68068 68068 0.1 1800 18000 0 0 0 0
+91	14860283 986 55168 67874 1460.84426574409 1790.84426574409 34 50 50 1700 85000
+94	14861269 38341 54833 68058 1450.848747799234 1790.861787674993 1201 0 0.1 8.532 0.39953400000000006
+96	14899610 38276 54833 68058 1450.848747799234 1790.861787674993 857 9996.341136784227 9997.036273786269 8567161.572216602 85643240879.59732
+101	14937886 2100 54923 68005 1450.857945619849 1790.858073619849 70 0 1 35 35
+102	14939986 2170 54923 68005 1450.857945619849 1790.858073619849 70 0 624 21840 13628160
+103	14942156 1308 54976 68005 1450.860761619849 1790.858073619849 35 0.000128 0.0069759999999999996 0.05056 0.0001589248
+104	14943464 1120 54923 68003 1450.857945619849 1790.857945619849 35 624 624 21840 13628160
+105	14944584 68104 54923 68068 1440.9 1800 3592 0 6240.000000000001 224640.00000000003 1401753600.0000005
+106	15012688 1120 54976 68005 1450.860761619849 1790.858073619849 35 624 624 21840 13628160
+107	15013808 68104 54976 68068 1440.9 1800 3592 0 6240.000000000001 224640.00000000003 1401753600.0000005
+110	15081912 327303 68068 68068 0.1 1800 18000 0 0 0 0
+111	15409215 327303 68068 68068 0.1 1800 18000 0 0 0 0
+112	15736518 9904 54869 67997 1450.85538574409 1790.855381604722 326 5 87 15242 1260454
+113	15746422 271 54836 63437 1450.848747799234 1670.848107799234 9 5 87 127 7769
+117	15746693 39542 54833 68058 1450.848747799234 1790.861787674993 1201 0 0.1 8.532 0.39953400000000006
+118	15786235 2160 54976 68017 1450.860761619849 1790.861241619849 72 2 3 180 468
+119	15788395 24545 54833 68058 1450.848747799234 1790.861787674993 821 0 3 1533 3767
+120	15812940 4320 54976 68017 1450.860761619849 1790.861241619849 144 0 2 144 216
+130	15817260 1085 54921 68001 1450.857945619849 1790.857945619849 35 58 58 2030 117740
+131	15818345 67636 54921 68068 1440.9 1800 3592 0 4640 167040 775065600
+137	15885981 327303 68068 68068 0.1 1800 18000 0 0 0 0
+138	16213284 1085 54920 68000 1450.857945619849 1790.857945619849 35 50 50 1750 87500
+141	16214369 40860 54842 68048 1450.851507737257 1790.861787487314 1240 0 0.1 9.176 0.4687720000000001
+143	16255229 39196 54842 68048 1450.851507737257 1790.861787487314 856 9996.334136133535 9997.031222919864 8557159.277353708 85543195008.68936
+148	16294425 2040 55186 67943 1460.847251737257 1790.851667737257 68 0 1 34 34
+149	16296465 2108 55186 67943 1460.847251737257 1790.851667737257 68 0 624 21216 13238784
+150	16298573 1270 55239 67943 1460.855955737257 1790.851667737257 34 0.000448 0.009023999999999999 0.110784 0.000538669056
+151	16299843 1088 55186 67892 1460.847251737257 1790.847251737257 34 624 624 21216 13238784
+152	16300931 66208 55186 68068 1450.9 1800 3492 0 6240.000000000001 218400.00000000003 1362816000.0000005
+153	16367139 1088 55239 67943 1460.855955737257 1790.851667737257 34 624 624 21216 13238784
+154	16368227 66208 55239 68068 1450.9 1800 3492 0 6240.000000000001 218400.00000000003 1362816000.0000005
+157	16434435 327303 68068 68068 0.1 1800 18000 0 0 0 0
+158	16761738 327303 68068 68068 0.1 1800 18000 0 0 0 0
+159	17089041 9977 54872 68050 1450.855386244436 1790.861787487314 327 5 87 15329 1268023
+164	17099018 40860 54842 68048 1450.851507737257 1790.861787487314 1240 0 0.1 9.176 0.4687720000000001
+165	17139878 2610 54842 67953 1450.851507737257 1790.854835737257 87 2 3 217 563
+166	17142488 24390 54842 68048 1450.851507737257 1790.861787487314 813 0 3 1496 3672
+167	17166878 5220 54842 67953 1450.851507737257 1790.854835737257 174 0 2 173 259
+177	17172098 1054 55184 67890 1460.847251737257 1790.847251737257 34 58 58 1972 114376
+178	17173152 65753 55184 68068 1450.9 1800 3492 0 4640 162400 753536000
+184	17238905 327303 68068 68068 0.1 1800 18000 0 0 0 0
+185	17566208 1054 55183 67889 1460.847251737257 1790.847251737257 34 50 50 1700 85000
+188	17567262 39059 54843 68049 1450.851507737257 1790.861787487314 1183 0 0.1 8.334 0.3796980000000001
+190	17606321 39172 54843 68049 1450.851507737257 1790.861787487314 855 9996.34195309877 9997.036540852227 8547167.980135579 85443369017.18675
+195	17645493 2040 55107 67815 1460.623563696397 1790.624331696397 68 0 1 34 34
+196	17647533 2108 55107 67815 1460.623563696397 1790.624331696397 68 0 624 21216 13238784
+197	17649641 1258 55109 67815 1460.623691696397 1790.624331696397 34 0.000128 0.002368 0.042112 7.1663616e-05
+198	17650899 1088 55107 67813 1460.623563696397 1790.623563696397 34 624 624 21216 13238784
+199	17651987 66246 55107 68068 1450.7 1800 3494 0 6240.000000000001 218400.00000000003 1362816000.0000005
+200	17718233 1088 55109 67815 1460.623691696397 1790.624331696397 34 624 624 21216 13238784
+201	17719321 66246 55109 68068 1450.7 1800 3494 0 6240.000000000001 218400.00000000003 1362816000.0000005
+204	17785567 327303 68068 68068 0.1 1800 18000 0 0 0 0
+205	18112870 327303 68068 68068 0.1 1800 18000 0 0 0 0
+206	18440173 10038 54873 68051 1450.855386244436 1790.861787487314 329 5 87 15421 1275617
+207	18450211 241 58511 63484 1550.848107611555 1670.854554244436 8 5 87 122 7744
+211	18450452 39059 54843 68049 1450.851507737257 1790.861787487314 1183 0 0.1 8.334 0.3796980000000001
+212	18489511 2040 55109 67825 1460.623691696397 1790.627499696397 68 2 3 170 442
+213	18491551 24630 54843 68049 1450.851507737257 1790.861787487314 821 0 3 1539 3785
+214	18516181 4080 55109 67825 1460.623691696397 1790.627499696397 136 0 2 136 204
+224	18520261 1054 55105 67811 1460.623563696397 1790.623563696397 34 58 58 1972 114376
+225	18521315 65791 55105 68068 1450.7 1800 3494 0 4640 162400 753536000
+231	18587106 327303 68068 68068 0.1 1800 18000 0 0 0 0
+232	18914409 1054 55104 67810 1460.623563696397 1790.623563696397 34 50 50 1700 85000
+235	18915463 31356 54844 68052 1450.85150817089 1790.86178754557 951 0 0.1 6.024 0.151488
+237	18946819 37819 54844 68052 1450.85150817089 1790.86178754557 832 9996.374102322943 9997.062529456514 8317268.560633784 83145380212.37183
+242	18984638 660 55431 67039 1470.384381708223 1770.385149708223 22 0 1 11 11
+243	18985298 682 55431 67039 1470.384381708223 1770.385149708223 22 0 624 6864 4283136
+244	18985980 407 55433 67039 1470.386109708223 1770.385149708223 11 0.000128 0.002048 0.008128 1.0194944e-05
+245	18986387 352 55431 67037 1470.384381708223 1770.384381708223 11 624 624 6864 4283136
+246	18986739 67815 55431 68068 1440.4 1800 3597 0 6240.000000000001 74880.00000000001 467251200.0000002
+247	19054554 352 55433 67039 1470.386109708223 1770.385149708223 11 624 624 6864 4283136
+248	19054906 67815 55433 68068 1440.4 1800 3597 0 6240.000000000001 74880.00000000001 467251200.0000002
+251	19122721 327303 68068 68068 0.1 1800 18000 0 0 0 0
+252	19450024 327303 68068 68068 0.1 1800 18000 0 0 0 0
+253	19777327 11303 54876 68054 1450.855386678069 1790.86178754557 375 5 87 17537 1450279
+254	19788630 271 54829 63487 1450.848747669811 1670.854554678069 9 5 87 127 7769
+258	19788901 31356 54844 68052 1450.85150817089 1790.86178754557 951 0 0.1 6.024 0.151488
+259	19820257 660 55433 67049 1470.386109708223 1770.388317708223 22 2 3 55 143
+260	19820917 24285 54844 68052 1450.85150817089 1790.86178754557 819 0 3 1604 3984
+261	19845202 1320 55433 67049 1470.386109708223 1770.388317708223 44 0 2 44 66
+271	19846522 341 55429 67035 1470.384381708223 1770.384381708223 11 58 58 638 37004
+272	19846863 67659 55429 68068 1440.4 1800 3597 0 4640 55680 258355200
+278	19914522 327303 68068 68068 0.1 1800 18000 0 0 0 0
+279	20241825 341 55428 67034 1470.384381708223 1770.384381708223 11 50 50 550 27500
+282	20242166 31390 54828 68053 1450.848747669811 1790.86178754557 952 0 0.1 6.029 0.15151300000000004
+284	20273556 37873 54828 68053 1450.848747669811 1790.86178754557 833 9996.37410232294 9997.062543259017 8327265.61358662 83245321280.12012
+289	20311429 660 55367 66975 1470.297534605255 1770.298622605255 22 0 1 11 11
+290	20312089 682 55367 66975 1470.297534605255 1770.298622605255 22 0 624 6864 4283136
+291	20312771 407 55369 66975 1470.298622605255 1770.298622605255 11 0.000128 0.002368 0.012608 1.9533823999999998e-05
+292	20313178 352 55367 66973 1470.297534605255 1770.297534605255 11 624 624 6864 4283136
+293	20313530 67834 55367 68068 1440.3 1800 3598 0 6240.000000000001 74880.00000000001 467251200.0000002
+294	20381364 352 55369 66975 1470.298622605255 1770.298622605255 11 624 624 6864 4283136
+295	20381716 67834 55369 68068 1440.3 1800 3598 0 6240.000000000001 74880.00000000001 467251200.0000002
+298	20449550 327303 68068 68068 0.1 1800 18000 0 0 0 0
+299	20776853 327303 68068 68068 0.1 1800 18000 0 0 0 0
+300	21104156 11303 54877 68055 1450.855386678069 1790.86178754557 375 5 87 17537 1450279
+301	21115459 271 54830 63488 1450.848747669811 1670.854554678069 9 5 87 127 7769
+305	21115730 31390 54828 68053 1450.848747669811 1790.86178754557 952 0 0.1 6.029 0.15151300000000004
+306	21147120 660 55369 66985 1470.298622605255 1770.301790605255 22 2 3 55 143
+307	21147780 24315 54828 68053 1450.848747669811 1790.86178754557 820 0 3 1606 3988
+308	21172095 1320 55369 66985 1470.298622605255 1770.301790605255 44 0 2 44 66
+318	21173415 341 55365 66971 1470.297534605255 1770.297534605255 11 58 58 638 37004
+319	21173756 67678 55365 68068 1440.3 1800 3598 0 4640 55680 258355200
+325	21241434 327303 68068 68068 0.1 1800 18000 0 0 0 0
+326	21568737 341 55364 66970 1470.297534605255 1770.297534605255 11 50 50 550 27500
+329	21569078 28157 54837 68062 1450.848747839588 1790.861787715347 842 0 0.01 4.929 0.042393
+331	21597235 37610 54837 68062 1450.848747839588 1790.861787715347 822 9996.390172710118 9997.075667410163 8217313.740011749 82146283610.68117
+342	21634845 327303 68068 68068 0.1 1800 18000 0 0 0 0
+346	21962148 16970 68068 68068 0.1 101.5 1015 0 0 0 0
+347	21979118 12101 54881 68063 1450.855387011634 1790.861787715347 397 5 87 18549 1533813
+348	21991219 271 54838 63492 1450.848747839588 1670.854555011634 9 5 87 127 7769
+352	21991490 28157 54837 68062 1450.848747839588 1790.861787715347 842 0 0.01 4.929 0.042393
+354	22019647 24578 54837 68062 1450.848747839588 1790.861787715347 820 1 3 1639 4087
+375	22044225 90670 54861 68047 1450.852410771662 1790.861786647421 2832 0 0.1 25.062 2.0459640000000006
+377	22134895 36883 54861 68047 1450.852410771662 1790.861786647421 811 9996.357242826489 9997.049062794285 8107324.581689208 81046500491.90948
+397	22171778 31 63490 63490 1670.854554771662 1670.854554771662 1 87 87 87 7569
+401	22171809 90670 54861 68047 1450.852410771662 1790.861786647421 2832 0 0.1 25.062 2.0459640000000006
+402	22262479 11982 54879 68047 1450.855386771662 1790.861786647421 404 2 3 1010 2626
+403	22274461 24024 54861 68047 1450.852410771662 1790.861786647421 810 0 3 1014 2232
+404	22298485 23964 54879 68047 1450.855386771662 1790.861786647421 808 0 2 808 1212
+441	22322449 5945 54946 68033 1450.85997257715 1790.861242647421 194 58 58 11252 652616
+442	22328394 6160 54946 68033 1450.85997257715 1790.861242647421 194 827 1020 179159 166061769
+445	22334554 5263 54947 68034 1450.85997257715 1790.861242647421 172 50 50 8600 430000
+446	22339817 65654 55072 67910 1450.9 1790.8 3400 0 12000.000000000002 680000.0000000001 5984000000.000001
+447	22405471 7675 54947 68034 1450.85997257715 1790.861242647421 172 0.003296839893 0.024816839893 0.916611792533 0.006270388225485732
+448	22413146 5435 54947 68034 1450.85997257715 1790.861242647421 172 145 179 27915 4547475
+449	22418581 682 55392 67062 1470.301791503404 1770.388318606372 22 50 50 1100 55000
+450	22419263 62216 55392 66998 1440.4 1770.3 3300 0 8000.000000000001 88000.00000000001 704000000.0000001
+451	22481479 1002 55392 67062 1470.301791503404 1770.388318606372 22 0.0032968981489999998 0.005536898149 0.090451759278 0.0003820714525675118
+452	22482481 682 55392 67062 1470.301791503404 1770.388318606372 22 49 59 1188 64372
+340	22483163 327303 68068 68068 0.1 1800 18000 0 0 0 0
+345	22810466 327303 68068 68068 0.1 1800 18000 0 0 0 0
+346	23137769 310333 68068 68068 101.6 1800 16985 0 0 0 0
+366	23448102 327303 68068 68068 0.1 1800 18000 0 0 0 0
+372	23775405 327303 68068 68068 0.1 1800 18000 0 0 0 0
+389	24102708 327303 68068 68068 0.1 1800 18000 0 0 0 0
+391	24430011 327303 68068 68068 0.1 1800 18000 0 0 0 0
+394	24757314 327303 68068 68068 0.1 1800 18000 0 0 0 0
+395	25084617 327303 68068 68068 0.1 1800 18000 0 0 0 0
+411	25411920 327303 68068 68068 0.1 1800 18000 0 0 0 0
+413	25739223 327303 68068 68068 0.1 1800 18000 0 0 0 0
+416	26066526 327303 68068 68068 0.1 1800 18000 0 0 0 0
+417	26393829 327303 68068 68068 0.1 1800 18000 0 0 0 0
+419	26721132 327303 68068 68068 0.1 1800 18000 0 0 0 0
+420	27048435 327303 68068 68068 0.1 1800 18000 0 0 0 0
+440	27375738 327303 68068 68068 0.1 1800 18000 0 0 0 0
+446	27703041 1745 68068 68068 1790.9 1800 92 0 12000.000000000002 12000.000000000002 144000000.00000003
+450	27704786 5599 68068 68068 1770.4 1800 297 0 8000.000000000001 8000.000000000001 64000000.000000015
+467	27710385 327303 68068 68068 0.1 1800 18000 0 0 0 0
+469	28037688 327303 68068 68068 0.1 1800 18000 0 0 0 0
+472	28364991 327303 68068 68068 0.1 1800 18000 0 0 0 0
+473	28692294 327303 68068 68068 0.1 1800 18000 0 0 0 0
+475	29019597 327303 68068 68068 0.1 1800 18000 0 0 0 0
+476	29346900 327303 68068 68068 0.1 1800 18000 0 0 0 0
+496	29674203 327303 68068 68068 0.1 1800 18000 0 0 0 0
+502	30001506 327303 68068 68068 0.1 1800 18000 0 0 0 0
+
