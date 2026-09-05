@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<analysis version="2">
+    <inputs>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#0.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#0.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#1.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#1.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#2.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#2.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#3.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#3.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#4.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=1-#4.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#0.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#0.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#1.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#1.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#2.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#2.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#3.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#3.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#4.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=10-#4.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#0.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#0.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#1.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#1.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#2.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#2.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#3.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#3.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#4.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=30-#4.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#0.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#0.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#1.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#1.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#2.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#2.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#3.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#3.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#4.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=5-#4.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#0.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#0.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#1.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#1.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#2.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#2.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#3.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#3.vec"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#4.sca"/>
+        <input pattern="results_reporting_interval_1800s/ReportingInterval-T=60-#4.vec"/>
+    </inputs>
+    <charts/>
+</analysis>
