@@ -1,0 +1,39 @@
+version 3
+run "RequestResponse-T=10,H=10-rep0-latency-view"
+attr configname "RequestResponse"
+attr experiment "RequestResponse"
+attr measurement "$T=10, $H=10"
+attr replication "#0"
+attr repetition "0"
+attr seedset "0"
+attr iterationvars "$T=10, $H=10"
+attr network "SmartHomeNetwork"
+attr derivedFrom "RequestResponse-T=10,H=10-rep0.sca"
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencyMean 5.4974417960614002
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencyMax 5.4996213516169998
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencyStddev 0.00098545843267357994
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencySamples 180
+scalar SmartHomeNetwork.monitoringApp.app[1] eventLatencyMean 4.9781558503219996
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[1] eventLatencyMax 4.9804438503219997
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[1] eventLatencyStddev 0.0010826526486739001
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[1] eventLatencySamples 180
+scalar SmartHomeNetwork.monitoringApp.app[2] eventLatencyMean 5.8289986627408998
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[2] eventLatencyMax 5.8311177738520001
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[2] eventLatencyStddev 0.0010131466961301001
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[2] eventLatencySamples 180
+scalar SmartHomeNetwork.monitoringApp.app[3] eventLatencyMean 4.0462587345917003
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[3] eventLatencyMax 4.0485200679249997
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[3] eventLatencyStddev 0.0010026146794126999
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[3] eventLatencySamples 180

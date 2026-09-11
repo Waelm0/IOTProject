@@ -1,0 +1,18 @@
+version 3
+run "PublishSubscribe-H=10-rep0-latency-view"
+attr configname "PublishSubscribe"
+attr experiment "PublishSubscribe"
+attr measurement "$H=10"
+attr replication "#0"
+attr repetition "0"
+attr seedset "0"
+attr iterationvars "$H=10"
+attr network "SmartHomeNetwork"
+attr derivedFrom "PublishSubscribe-H=10-rep0.sca"
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencyMean 0.0044652681490091996
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencyMax 0.0055452681490351001
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencyStddev 0.00072461509614383005
+attr unit s
+scalar SmartHomeNetwork.monitoringApp.app[0] eventLatencySamples 720
