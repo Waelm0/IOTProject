@@ -1,4 +1,4 @@
 #!/bin/sh
 cd `dirname $0`
-../src/smarthome -n .:../src:$HOME/iot-project/inet-workspace/inet-4.6.0/src $*
+../src/smarthome -n .:../src:/d/omnetpp/inet4.6/src $*
 # for shared lib, use: opp_run -l ../src/smarthome -n .:../src $*

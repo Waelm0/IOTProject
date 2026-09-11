@@ -3,7 +3,7 @@
 	<name>smarthome</name>
 	<comment></comment>
 	<projects>
-		<project>inet-4.6.0</project>
+		<project>inet</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

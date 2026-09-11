@@ -1,4 +1,6 @@
 .DS_Store
 out/
+*.exe
+src/Makefile.*
 *.bak
 *.swp

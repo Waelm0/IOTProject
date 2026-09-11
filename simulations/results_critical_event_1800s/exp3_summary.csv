@@ -1,0 +1,5 @@
+B,runs,critical_sent,critical_received,critical_pdr_percent,background_sent,background_received,background_pdr_percent,mean_critical_delay_ms,mean_critical_delay_stddev_ms,worst_critical_delay_ms,avg_energy_used_j_per_node
+5,5,9000,9000,100.0,4500,4500,100.0,4.4247,0.7254,5.5369,3.3832
+10,5,9000,9000,100.0,9000,9000,100.0,4.4938,0.9135,21.8089,3.5204
+20,5,9000,9000,100.0,18000,17998,99.9889,4.4291,0.7321,5.5369,3.6579
+30,5,9000,9000,100.0,27000,26998,99.9926,4.5812,1.183,33.2489,3.7462
