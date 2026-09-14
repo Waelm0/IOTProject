@@ -66,7 +66,7 @@ class StrategyApp : public UdpBasicApp
         }
         else if (role == "broker") {
             // One statically configured subscriber; forward the original event identity/time.
-            transmit("Notification", L3AddressResolver().resolve("monitoringApp"), 4000,
+            transmit("Notification", L3AddressResolver().resolve("monitoringApp%eth0(ipv6)"), 4000,
                 par("messageLength"), requestTime, eventTime, origin, event);
         }
         else if (role == "poller" || role == "subscriber") {

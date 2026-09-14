@@ -1,0 +1,24 @@
+Command: ['D:\\omnetpp\\workspace\\IOTProject\\src\\smarthome.exe', '-u', 'Cmdenv', '-n', '.:../src:../../../inet4.6/src', '-f', 'experiment4.ini', '-c', 'RequestResponse', '-r', '49', '--cmdenv-express-mode=true', '--cmdenv-log-level=off', '--cmdenv-status-frequency=30s']
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.2.0, build: 250714-83e173e93a, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  1
+Loading NED files from ../src:  3
+Loading NED files from ../../../inet4.6/src:  1245
+
+Preparing for running configuration RequestResponse, run #49...
+Scenario: $T=60, $H=0.1, $repetition=4
+Assigned runID=RequestResponse-49-20260914-04:33:32-32372
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.6e-05s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 360   present: 360   in FES: 49
+** Event #1297920   t=159.347225852648   Elapsed: 30.0037s (0m 30s)  8% completed  (8% total)
+     Speed:     ev/sec=43258.7   simsec/sec=5.31093   ev/simsec=8145.24
+     Messages:  created: 1866548   present: 383   in FES: 43

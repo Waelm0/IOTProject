@@ -1,0 +1,66 @@
+Command: ['D:\\omnetpp\\workspace\\IOTProject\\src\\smarthome.exe', '-u', 'Cmdenv', '-n', '.:../src:../../../inet4.6/src', '-f', 'experiment4.ini', '-c', 'RequestResponse', '-r', '9', '--cmdenv-express-mode=true', '--cmdenv-log-level=off', '--cmdenv-status-frequency=30s']
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.2.0, build: 250714-83e173e93a, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  1
+Loading NED files from ../src:  3
+Loading NED files from ../../../inet4.6/src:  1245
+
+Preparing for running configuration RequestResponse, run #9...
+Scenario: $T=1, $H=0.1, $repetition=4
+Assigned runID=RequestResponse-9-20260914-04:16:50-4896
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.4e-05s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 360   present: 360   in FES: 49
+** Event #1567488   t=174.502038113518   Elapsed: 30.0045s (0m 30s)  9% completed  (9% total)
+     Speed:     ev/sec=52241.8   simsec/sec=5.81586   ev/simsec=8982.64
+     Messages:  created: 2242446   present: 360   in FES: 38
+** Event #3016704   t=334.53122779418   Elapsed: 60.0054s (1m 00s)  18% completed  (18% total)
+     Speed:     ev/sec=48305.7   simsec/sec=5.33415   ev/simsec=9055.95
+     Messages:  created: 4313952   present: 352   in FES: 28
+** Event #4534272   t=502.71986023938   Elapsed: 90.0076s (1m 30s)  27% completed  (27% total)
+     Speed:     ev/sec=50581.9   simsec/sec=5.60587   ev/simsec=9023.01
+     Messages:  created: 6483779   present: 353   in FES: 30
+** Event #5906688   t=654.799156205699   Elapsed: 120.013s (2m 00s)  36% completed  (36% total)
+     Speed:     ev/sec=45738.7   simsec/sec=5.06837   ev/simsec=9024.34
+     Messages:  created: 8446574   present: 380   in FES: 45
+** Event #7215104   t=799.209764739726   Elapsed: 150.015s (2m 30s)  44% completed  (44% total)
+     Speed:     ev/sec=43610.8   simsec/sec=4.81335   ev/simsec=9060.39
+     Messages:  created: 10316861   present: 397   in FES: 47
+** Event #8488192   t=939.929627664757   Elapsed: 180.019s (3m 00s)  52% completed  (52% total)
+     Speed:     ev/sec=42430.7   simsec/sec=4.69005   ev/simsec=9046.97
+     Messages:  created: 12137230   present: 375   in FES: 39
+** Event #9529856   t=1055.109685079273   Elapsed: 210.024s (3m 30s)  58% completed  (58% total)
+     Speed:     ev/sec=34716   simsec/sec=3.83866   ev/simsec=9043.79
+     Messages:  created: 13626093   present: 400   in FES: 46
+** Event #10750208   t=1190.91521209846   Elapsed: 240.028s (4m 00s)  66% completed  (66% total)
+     Speed:     ev/sec=40674.2   simsec/sec=4.52638   ev/simsec=8986.03
+     Messages:  created: 15372547   present: 377   in FES: 41
+** Event #12080128   t=1338.119381943741   Elapsed: 270.028s (4m 30s)  74% completed  (74% total)
+     Speed:     ev/sec=44329.6   simsec/sec=4.90669   ev/simsec=9034.53
+     Messages:  created: 17275302   present: 383   in FES: 45
+** Event #13377280   t=1481.903637943741   Elapsed: 300.033s (5m 00s)  82% completed  (82% total)
+     Speed:     ev/sec=43232.2   simsec/sec=4.79212   ev/simsec=9021.52
+     Messages:  created: 19129976   present: 377   in FES: 45
+** Event #14632448   t=1620.726425926715   Elapsed: 330.036s (5m 30s)  90% completed  (90% total)
+     Speed:     ev/sec=41834   simsec/sec=4.62688   ev/simsec=9041.51
+     Messages:  created: 20924493   present: 386   in FES: 47
+** Event #15909120   t=1762.297876639332   Elapsed: 360.037s (6m 00s)  97% completed  (97% total)
+     Speed:     ev/sec=42553.9   simsec/sec=4.71885   ev/simsec=9017.86
+     Messages:  created: 22750003   present: 385   in FES: 45
+** Event #16249560   t=1800   Elapsed: 367.704s (6m 07s)  100% completed  (100% total)
+     Speed:     ev/sec=44403.9   simsec/sec=4.91753   ev/simsec=9029.72
+     Messages:  created: 23236790   present: 349   in FES: 29
+
+<!> Simulation time limit reached -- at t=1800s, event #16249560
+
+Calling finish() at end of Run #9...
+
+End.

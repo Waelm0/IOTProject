@@ -107,5 +107,8 @@ def export(folder, partial=False):
     return summary
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser();parser.add_argument('--partial',action='store_true');args=parser.parse_args()
-    export(ROOT/'results_strategy_1800s',args.partial)
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--partial',action='store_true')
+    parser.add_argument('--folder',type=Path,default=ROOT/'results_ipv6'/'strategy')
+    args=parser.parse_args()
+    export(args.folder,args.partial)

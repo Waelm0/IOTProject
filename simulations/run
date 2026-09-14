@@ -1,4 +1,8 @@
 #!/bin/sh
-cd `dirname $0`
-../src/smarthome -n .:../src:/d/omnetpp/inet4.6/src $*
-# for shared lib, use: opp_run -l ../src/smarthome -n .:../src $*
+cd "$(dirname "$0")" || exit 1
+INET_ROOT="${INET_ROOT:-../../../inet4.6}"
+executable=../src/smarthome
+if [ -f ../src/smarthome.exe ]; then
+    executable=../src/smarthome.exe
+fi
+exec "$executable" -n ".:../src:$INET_ROOT/src" "$@"

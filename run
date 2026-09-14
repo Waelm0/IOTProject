@@ -1,4 +1,3 @@
 #!/bin/sh
-cd `dirname $0`
-../src/smarthome -n .:../src $*
-# for shared lib, use: opp_run -l ../src/smarthome -n .:../src $*
+cd "$(dirname "$0")/simulations" || exit 1
+exec ./run "$@"

@@ -4,7 +4,7 @@ import inet.node.inet.SensorNode;
 import inet.node.inet.StandardHost;
 import inet.node.ethernet.Eth100M;
 import inet.physicallayer.wireless.ieee802154.packetlevel.Ieee802154NarrowbandScalarRadioMedium;
-import inet.networklayer.configurator.ipv4.Ipv4NetworkConfigurator;
+import smarthome.SmartHomeIpv6Configurator;
 import inet.visualizer.contract.IIntegratedVisualizer;
 import inet.node.inet.Router;
 
@@ -53,7 +53,7 @@ network SmartHomeNetwork
         radioMedium: Ieee802154NarrowbandScalarRadioMedium {
             @display("p=834,48");
         }
-        configurator: Ipv4NetworkConfigurator {
+        configurator: SmartHomeIpv6Configurator {
             @display("p=815,527");
         }
         visualizer: <default("IntegratedCanvasVisualizer")> like IIntegratedVisualizer {

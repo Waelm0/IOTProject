@@ -1,0 +1,785 @@
+Command: ['D:\\omnetpp\\workspace\\IOTProject\\src\\smarthome.exe', '-u', 'Cmdenv', '-n', '.:../src:../../../inet4.6/src', '-f', 'omnetpp.ini', '-c', 'ReportingInterval', '-r', '0..24', '--cmdenv-express-mode=true', '--cmdenv-log-level=off']
+OMNeT++ Discrete Event Simulation  (C) 1992-2025 Andras Varga, OpenSim Ltd.
+Version: 6.2.0, build: 250714-83e173e93a, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+
+Setting up Cmdenv...
+
+Loading NED files from .:  1
+Loading NED files from ../src:  3
+Loading NED files from ../../../inet4.6/src:  1245
+
+Preparing for running configuration ReportingInterval, run #0...
+Scenario: $T=1, $repetition=0
+Assigned runID=ReportingInterval-0-20260914-04:15:18-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.7e-05s (0m 00s)  0% completed  (0% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #128768   t=138.861882887393   Elapsed: 2.00017s (0m 02s)  7% completed  (0% total)
+     Speed:     ev/sec=64379.4   simsec/sec=69.4254   ev/simsec=927.317
+     Messages:  created: 189453   present: 389   in FES: 32
+** Event #274944   t=295.398638548116   Elapsed: 4.00223s (0m 04s)  16% completed  (0% total)
+     Speed:     ev/sec=73012.8   simsec/sec=78.1878   ev/simsec=933.813
+     Messages:  created: 403851   present: 382   in FES: 29
+** Event #413184   t=442.624204196743   Elapsed: 6.00223s (0m 06s)  24% completed  (0% total)
+     Speed:     ev/sec=69120   simsec/sec=73.6128   ev/simsec=938.967
+     Messages:  created: 606846   present: 424   in FES: 45
+** Event #560384   t=601.848747799234   Elapsed: 8.00498s (0m 08s)  33% completed  (1% total)
+     Speed:     ev/sec=73499   simsec/sec=79.5031   ev/simsec=924.481
+     Messages:  created: 823212   present: 409   in FES: 42
+** Event #705024   t=757.62612453629   Elapsed: 10.0073s (0m 10s)  42% completed  (1% total)
+     Speed:     ev/sec=72234.6   simsec/sec=77.7967   ev/simsec=928.505
+     Messages:  created: 1035608   present: 432   in FES: 49
+** Event #841984   t=904.391935446265   Elapsed: 12.01s (0m 12s)  50% completed  (2% total)
+     Speed:     ev/sec=68388.3   simsec/sec=73.2847   ev/simsec=933.187
+     Messages:  created: 1236708   present: 422   in FES: 47
+** Event #985344   t=1057.854741792401   Elapsed: 14.0109s (0m 14s)  58% completed  (2% total)
+     Speed:     ev/sec=71647.1   simsec/sec=76.6962   ev/simsec=934.168
+     Messages:  created: 1446996   present: 408   in FES: 37
+** Event #1131008   t=1214.864027487314   Elapsed: 16.0132s (0m 16s)  67% completed  (2% total)
+     Speed:     ev/sec=72751.1   simsec/sec=78.4175   ev/simsec=927.741
+     Messages:  created: 1661014   present: 425   in FES: 44
+** Event #1277696   t=1373.867642553828   Elapsed: 18.0155s (0m 18s)  76% completed  (3% total)
+     Speed:     ev/sec=73257   simsec/sec=79.4075   ev/simsec=922.545
+     Messages:  created: 1876552   present: 434   in FES: 48
+** Event #1421824   t=1529.389471446265   Elapsed: 20.028s (0m 20s)  84% completed  (3% total)
+     Speed:     ev/sec=71616.4   simsec/sec=77.278   ev/simsec=926.738
+     Messages:  created: 2088042   present: 424   in FES: 47
+** Event #1557760   t=1675.594125883933   Elapsed: 22.0299s (0m 22s)  93% completed  (3% total)
+     Speed:     ev/sec=67903.1   simsec/sec=73.0325   ev/simsec=929.765
+     Messages:  created: 2287695   present: 429   in FES: 46
+** Event #1671842   t=1800   Elapsed: 23.5982s (0m 23s)  100% completed  (4% total)
+     Speed:     ev/sec=72746.4   simsec/sec=79.2499   ev/simsec=917.936
+     Messages:  created: 2455472   present: 381   in FES: 29
+
+<!> Simulation time limit reached -- at t=1800s, event #1671842
+
+Calling finish() at end of Run #0...
+
+Preparing for running configuration ReportingInterval, run #1...
+Scenario: $T=1, $repetition=1
+Assigned runID=ReportingInterval-1-20260914-04:15:42-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 2.2e-05s (0m 00s)  0% completed  (4% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #138752   t=148.402022593606   Elapsed: 2.00164s (0m 02s)  8% completed  (4% total)
+     Speed:     ev/sec=69319.9   simsec/sec=74.1404   ev/simsec=934.981
+     Messages:  created: 203842   present: 399   in FES: 34
+** Event #280064   t=300.937359228665   Elapsed: 4.00476s (0m 04s)  16% completed  (4% total)
+     Speed:     ev/sec=70546.2   simsec/sec=76.1491   ev/simsec=926.421
+     Messages:  created: 411560   present: 423   in FES: 46
+** Event #423680   t=457.240345743461   Elapsed: 6.00614s (0m 06s)  25% completed  (5% total)
+     Speed:     ev/sec=71758.5   simsec/sec=78.0976   ev/simsec=918.831
+     Messages:  created: 622616   present: 386   in FES: 31
+** Event #566016   t=613.142748948118   Elapsed: 8.00647s (0m 08s)  34% completed  (5% total)
+     Speed:     ev/sec=71156.3   simsec/sec=77.9384   ev/simsec=912.981
+     Messages:  created: 831826   present: 428   in FES: 51
+** Event #709120   t=767.673875720153   Elapsed: 10.0075s (0m 10s)  42% completed  (5% total)
+     Speed:     ev/sec=71515.5   simsec/sec=77.2261   ev/simsec=926.053
+     Messages:  created: 1041788   present: 416   in FES: 46
+** Event #848640   t=918.402437566034   Elapsed: 12.0086s (0m 12s)  51% completed  (6% total)
+     Speed:     ev/sec=69722.4   simsec/sec=75.3236   ev/simsec=925.637
+     Messages:  created: 1246645   present: 389   in FES: 32
+** Event #992256   t=1074.401670405927   Elapsed: 14.0091s (0m 14s)  59% completed  (6% total)
+     Speed:     ev/sec=71788.3   simsec/sec=77.9783   ev/simsec=920.62
+     Messages:  created: 1457800   present: 422   in FES: 46
+** Event #1137152   t=1231.007490610893   Elapsed: 16.0138s (0m 16s)  68% completed  (6% total)
+     Speed:     ev/sec=72278.4   simsec/sec=78.1196   ev/simsec=925.227
+     Messages:  created: 1670471   present: 399   in FES: 36
+** Event #1281024   t=1386.24213865605   Elapsed: 18.015s (0m 18s)  77% completed  (7% total)
+     Speed:     ev/sec=71892.2   simsec/sec=77.5701   ev/simsec=926.803
+     Messages:  created: 1881661   present: 418   in FES: 46
+** Event #1409024   t=1525.394632420003   Elapsed: 20.0169s (0m 20s)  84% completed  (7% total)
+     Speed:     ev/sec=63941.3   simsec/sec=69.5125   ev/simsec=919.854
+     Messages:  created: 2069748   present: 425   in FES: 46
+** Event #1536768   t=1664.938319286921   Elapsed: 22.0188s (0m 22s)  92% completed  (7% total)
+     Speed:     ev/sec=63810.1   simsec/sec=69.7043   ev/simsec=915.441
+     Messages:  created: 2257631   present: 413   in FES: 44
+** Event #1661176   t=1800   Elapsed: 23.9826s (0m 23s)  100% completed  (8% total)
+     Speed:     ev/sec=63350.7   simsec/sec=68.776   ev/simsec=921.116
+     Messages:  created: 2440360   present: 429   in FES: 46
+
+<!> Simulation time limit reached -- at t=1800s, event #1661176
+
+Calling finish() at end of Run #1...
+
+Preparing for running configuration ReportingInterval, run #2...
+Scenario: $T=1, $repetition=2
+Assigned runID=ReportingInterval-2-20260914-04:16:06-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 2.7e-05s (0m 00s)  0% completed  (8% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #129536   t=140.951987638418   Elapsed: 2.00317s (0m 02s)  7% completed  (8% total)
+     Speed:     ev/sec=64666.3   simsec/sec=70.3648   ev/simsec=919.015
+     Messages:  created: 191202   present: 399   in FES: 40
+** Event #249600   t=273.324472869913   Elapsed: 4.00547s (0m 04s)  15% completed  (8% total)
+     Speed:     ev/sec=59963.2   simsec/sec=66.1104   ev/simsec=907.016
+     Messages:  created: 368266   present: 407   in FES: 38
+** Event #365824   t=400.931668863588   Elapsed: 6.01119s (0m 06s)  22% completed  (8% total)
+     Speed:     ev/sec=57946.2   simsec/sec=63.6215   ev/simsec=910.795
+     Messages:  created: 539448   present: 382   in FES: 29
+** Event #471808   t=517.93675789116   Elapsed: 8.01243s (0m 08s)  28% completed  (9% total)
+     Speed:     ev/sec=52959.9   simsec/sec=58.4671   ev/simsec=905.807
+     Messages:  created: 695827   present: 394   in FES: 35
+** Event #578304   t=635.490606030192   Elapsed: 10.0173s (0m 10s)  35% completed  (9% total)
+     Speed:     ev/sec=53117.4   simsec/sec=58.6327   ev/simsec=905.934
+     Messages:  created: 852951   present: 403   in FES: 38
+** Event #690176   t=758.949971111192   Elapsed: 12.0197s (0m 12s)  42% completed  (9% total)
+     Speed:     ev/sec=55869.1   simsec/sec=61.6558   ev/simsec=906.144
+     Messages:  created: 1017903   present: 422   in FES: 49
+** Event #794624   t=873.703664556779   Elapsed: 14.0234s (0m 14s)  48% completed  (9% total)
+     Speed:     ev/sec=52128.1   simsec/sec=57.2715   ev/simsec=910.193
+     Messages:  created: 1171828   present: 403   in FES: 36
+** Event #918016   t=1010.96211666599   Elapsed: 16.0286s (0m 16s)  56% completed  (10% total)
+     Speed:     ev/sec=61534.6   simsec/sec=68.4497   ev/simsec=898.976
+     Messages:  created: 1354020   present: 403   in FES: 38
+** Event #1024768   t=1127.953492706344   Elapsed: 18.0289s (0m 18s)  62% completed  (10% total)
+     Speed:     ev/sec=53369.2   simsec/sec=58.4882   ev/simsec=912.478
+     Messages:  created: 1511260   present: 384   in FES: 29
+** Event #1134336   t=1249.16028344272   Elapsed: 20.0314s (0m 20s)  69% completed  (10% total)
+     Speed:     ev/sec=54715.2   simsec/sec=60.5273   ev/simsec=903.976
+     Messages:  created: 1672982   present: 386   in FES: 31
+** Event #1241344   t=1367.484749096213   Elapsed: 22.0357s (0m 22s)  75% completed  (11% total)
+     Speed:     ev/sec=53389.9   simsec/sec=59.036   ev/simsec=904.361
+     Messages:  created: 1830876   present: 384   in FES: 32
+** Event #1348352   t=1484.121230543856   Elapsed: 24.0401s (0m 24s)  82% completed  (11% total)
+     Speed:     ev/sec=53385.2   simsec/sec=58.1888   ev/simsec=917.449
+     Messages:  created: 1988326   present: 417   in FES: 46
+** Event #1452032   t=1597.326073276173   Elapsed: 26.0455s (0m 26s)  88% completed  (11% total)
+     Speed:     ev/sec=51701.5   simsec/sec=56.4512   ev/simsec=915.862
+     Messages:  created: 2141075   present: 384   in FES: 31
+** Event #1553152   t=1708.937396863588   Elapsed: 28.0467s (0m 28s)  94% completed  (11% total)
+     Speed:     ev/sec=50528.5   simsec/sec=55.7709   ev/simsec=906.001
+     Messages:  created: 2290150   present: 419   in FES: 42
+** Event #1635097   t=1800   Elapsed: 29.2985s (0m 29s)  100% completed  (12% total)
+     Speed:     ev/sec=65462.7   simsec/sec=72.7181   ev/simsec=900.225
+     Messages:  created: 2411256   present: 381   in FES: 29
+
+<!> Simulation time limit reached -- at t=1800s, event #1635097
+
+Calling finish() at end of Run #2...
+
+Preparing for running configuration ReportingInterval, run #3...
+Scenario: $T=1, $repetition=3
+Assigned runID=ReportingInterval-3-20260914-04:16:36-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 2.3e-05s (0m 00s)  0% completed  (12% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #103936   t=112.574113193136   Elapsed: 2.00195s (0m 02s)  6% completed  (12% total)
+     Speed:     ev/sec=51918.2   simsec/sec=56.2326   ev/simsec=923.276
+     Messages:  created: 153408   present: 422   in FES: 45
+** Event #219648   t=241.252144301732   Elapsed: 4.0069s (0m 04s)  13% completed  (12% total)
+     Speed:     ev/sec=57712.9   simsec/sec=64.1799   ev/simsec=899.237
+     Messages:  created: 324383   present: 423   in FES: 46
+** Event #333824   t=366.122609846806   Elapsed: 6.00985s (0m 06s)  20% completed  (12% total)
+     Speed:     ev/sec=57004.1   simsec/sec=62.3435   ev/simsec=914.356
+     Messages:  created: 492441   present: 428   in FES: 45
+** Event #443136   t=487.44195837372   Elapsed: 8.0113s (0m 08s)  27% completed  (13% total)
+     Speed:     ev/sec=54616.6   simsec/sec=60.6159   ev/simsec=901.027
+     Messages:  created: 653806   present: 408   in FES: 39
+** Event #556032   t=612.438022707284   Elapsed: 10.0139s (0m 10s)  34% completed  (13% total)
+     Speed:     ev/sec=56373.1   simsec/sec=62.4151   ev/simsec=903.196
+     Messages:  created: 820458   present: 434   in FES: 52
+** Event #664576   t=731.575073421169   Elapsed: 12.0156s (0m 12s)  40% completed  (13% total)
+     Speed:     ev/sec=54226.3   simsec/sec=59.5184   ev/simsec=911.085
+     Messages:  created: 980353   present: 386   in FES: 31
+** Event #753664   t=831.073892880323   Elapsed: 14.0175s (0m 14s)  46% completed  (13% total)
+     Speed:     ev/sec=44502.5   simsec/sec=49.7031   ev/simsec=895.367
+     Messages:  created: 1111988   present: 425   in FES: 48
+** Event #841216   t=927.249808802078   Elapsed: 16.0206s (0m 16s)  51% completed  (14% total)
+     Speed:     ev/sec=43707.4   simsec/sec=48.0126   ev/simsec=910.332
+     Messages:  created: 1241061   present: 424   in FES: 45
+** Event #954624   t=1050.12805067476   Elapsed: 18.0241s (0m 18s)  58% completed  (14% total)
+     Speed:     ev/sec=56606.8   simsec/sec=61.3338   ev/simsec=922.93
+     Messages:  created: 1407956   present: 393   in FES: 34
+** Event #1067776   t=1174.074853907895   Elapsed: 20.025s (0m 20s)  65% completed  (14% total)
+     Speed:     ev/sec=56549.3   simsec/sec=61.9441   ev/simsec=912.908
+     Messages:  created: 1574811   present: 415   in FES: 46
+** Event #1171712   t=1289.570719325671   Elapsed: 22.0251s (0m 22s)  71% completed  (14% total)
+     Speed:     ev/sec=51964.5   simsec/sec=57.7441   ev/simsec=899.911
+     Messages:  created: 1728151   present: 382   in FES: 29
+** Event #1288448   t=1417.845070968024   Elapsed: 24.0307s (0m 24s)  78% completed  (15% total)
+     Speed:     ev/sec=58205.4   simsec/sec=63.9585   ev/simsec=910.049
+     Messages:  created: 1900249   present: 414   in FES: 41
+** Event #1398272   t=1538.122929513241   Elapsed: 26.0366s (0m 26s)  85% completed  (15% total)
+     Speed:     ev/sec=54752.6   simsec/sec=59.9644   ev/simsec=913.086
+     Messages:  created: 2062195   present: 424   in FES: 45
+** Event #1499904   t=1650.443111619873   Elapsed: 28.0403s (0m 28s)  91% completed  (15% total)
+     Speed:     ev/sec=50722   simsec/sec=56.0562   ev/simsec=904.842
+     Messages:  created: 2212127   present: 416   in FES: 46
+** Event #1603840   t=1765.077126806044   Elapsed: 30.041s (0m 30s)  98% completed  (15% total)
+     Speed:     ev/sec=51947.9   simsec/sec=57.2948   ev/simsec=906.677
+     Messages:  created: 2365430   present: 415   in FES: 42
+** Event #1635079   t=1800   Elapsed: 30.6432s (0m 30s)  100% completed  (16% total)
+     Speed:     ev/sec=51875.5   simsec/sec=57.7558   ev/simsec=898.188
+     Messages:  created: 2411543   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #1635079
+
+Calling finish() at end of Run #3...
+
+Preparing for running configuration ReportingInterval, run #4...
+Scenario: $T=1, $repetition=4
+Assigned runID=ReportingInterval-4-20260914-04:17:07-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.4e-05s (0m 00s)  0% completed  (16% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #109568   t=120.007720083857   Elapsed: 2.00062s (0m 02s)  6% completed  (16% total)
+     Speed:     ev/sec=54767.8   simsec/sec=59.9856   ev/simsec=913.016
+     Messages:  created: 161867   present: 428   in FES: 46
+** Event #220160   t=241.703541977422   Elapsed: 4.00261s (0m 04s)  13% completed  (16% total)
+     Speed:     ev/sec=55241   simsec/sec=60.7874   ev/simsec=908.758
+     Messages:  created: 325038   present: 411   in FES: 42
+** Event #327168   t=360.228634360348   Elapsed: 6.00446s (0m 06s)  20% completed  (16% total)
+     Speed:     ev/sec=53454.5   simsec/sec=59.2077   ev/simsec=902.83
+     Messages:  created: 482880   present: 422   in FES: 49
+** Event #432384   t=473.615405693612   Elapsed: 8.00828s (0m 08s)  26% completed  (17% total)
+     Speed:     ev/sec=52507.8   simsec/sec=56.5854   ev/simsec=927.939
+     Messages:  created: 637564   present: 430   in FES: 46
+** Event #533760   t=585.603637943741   Elapsed: 10.0085s (0m 10s)  32% completed  (17% total)
+     Speed:     ev/sec=50682.7   simsec/sec=55.9882   ev/simsec=905.238
+     Messages:  created: 787124   present: 405   in FES: 36
+** Event #629504   t=690.704596673013   Elapsed: 12.0114s (0m 12s)  38% completed  (17% total)
+     Speed:     ev/sec=47801.9   simsec/sec=52.4735   ev/simsec=910.972
+     Messages:  created: 928257   present: 416   in FES: 43
+** Event #736256   t=808.902861955043   Elapsed: 14.0136s (0m 14s)  44% completed  (17% total)
+     Speed:     ev/sec=53318.1   simsec/sec=59.0351   ev/simsec=903.16
+     Messages:  created: 1085732   present: 418   in FES: 45
+** Event #837632   t=920.615212625686   Elapsed: 16.0171s (0m 16s)  51% completed  (18% total)
+     Speed:     ev/sec=50599.7   simsec/sec=55.7588   ev/simsec=907.474
+     Messages:  created: 1235205   present: 393   in FES: 34
+** Event #925696   t=1017.702997079273   Elapsed: 18.0216s (0m 18s)  56% completed  (18% total)
+     Speed:     ev/sec=43933.1   simsec/sec=48.4348   ev/simsec=907.055
+     Messages:  created: 1365085   present: 386   in FES: 33
+** Event #1014016   t=1114.857860944872   Elapsed: 20.0283s (0m 20s)  61% completed  (18% total)
+     Speed:     ev/sec=44012.1   simsec/sec=48.4147   ev/simsec=909.064
+     Messages:  created: 1495429   present: 418   in FES: 48
+** Event #1111808   t=1222.147866080681   Elapsed: 22.0306s (0m 22s)  67% completed  (18% total)
+     Speed:     ev/sec=48840.5   simsec/sec=53.5841   ev/simsec=911.474
+     Messages:  created: 1639486   present: 386   in FES: 31
+** Event #1200896   t=1320.613165523835   Elapsed: 24.0344s (0m 24s)  73% completed  (18% total)
+     Speed:     ev/sec=44459.4   simsec/sec=49.1391   ev/simsec=904.765
+     Messages:  created: 1770933   present: 428   in FES: 48
+** Event #1300992   t=1430.86202304037   Elapsed: 26.0357s (0m 26s)  79% completed  (19% total)
+     Speed:     ev/sec=50015.1   simsec/sec=55.0882   ev/simsec=907.91
+     Messages:  created: 1918507   present: 387   in FES: 32
+** Event #1403392   t=1543.604277885485   Elapsed: 28.0386s (0m 28s)  85% completed  (19% total)
+     Speed:     ev/sec=51126.3   simsec/sec=56.2899   ev/simsec=908.266
+     Messages:  created: 2069512   present: 424   in FES: 45
+** Event #1497344   t=1647.155721012755   Elapsed: 30.0388s (0m 30s)  91% completed  (19% total)
+     Speed:     ev/sec=46970.9   simsec/sec=51.7701   ev/simsec=907.298
+     Messages:  created: 2207976   present: 382   in FES: 29
+** Event #1593088   t=1752.146040606495   Elapsed: 32.0392s (0m 32s)  97% completed  (19% total)
+     Speed:     ev/sec=47862.5   simsec/sec=52.4847   ev/simsec=911.932
+     Messages:  created: 2349096   present: 411   in FES: 42
+** Event #1635465   t=1800   Elapsed: 32.8443s (0m 32s)  100% completed  (20% total)
+     Speed:     ev/sec=52637.7   simsec/sec=59.3371   ev/simsec=887.095
+     Messages:  created: 2411832   present: 382   in FES: 30
+
+<!> Simulation time limit reached -- at t=1800s, event #1635465
+
+Calling finish() at end of Run #4...
+
+Preparing for running configuration ReportingInterval, run #5...
+Scenario: $T=5, $repetition=0
+Assigned runID=ReportingInterval-5-20260914-04:17:40-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.3e-05s (0m 00s)  0% completed  (20% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #94208   t=400.851819839588   Elapsed: 2.0039s (0m 02s)  22% completed  (20% total)
+     Speed:     ev/sec=47013.1   simsec/sec=200.037   ev/simsec=235.022
+     Messages:  created: 134586   present: 394   in FES: 36
+** Event #184832   t=800.605517550368   Elapsed: 4.00404s (0m 04s)  44% completed  (21% total)
+     Speed:     ev/sec=45308.9   simsec/sec=199.863   ev/simsec=226.7
+     Messages:  created: 263907   present: 403   in FES: 38
+** Event #278784   t=1205.629325434439   Elapsed: 6.00918s (0m 06s)  66% completed  (22% total)
+     Speed:     ev/sec=46855.6   simsec/sec=201.993   ev/simsec=231.967
+     Messages:  created: 397754   present: 416   in FES: 41
+** Event #380160   t=1650.479585445219   Elapsed: 8.01257s (0m 08s)  91% completed  (23% total)
+     Speed:     ev/sec=50602.4   simsec/sec=222.049   ev/simsec=227.888
+     Messages:  created: 542440   present: 419   in FES: 45
+** Event #412708   t=1800   Elapsed: 8.69212s (0m 08s)  100% completed  (24% total)
+     Speed:     ev/sec=47894.6   simsec/sec=213.954   ev/simsec=223.855
+     Messages:  created: 589134   present: 388   in FES: 36
+
+<!> Simulation time limit reached -- at t=1800s, event #412708
+
+Calling finish() at end of Run #5...
+
+Preparing for running configuration ReportingInterval, run #6...
+Scenario: $T=5, $repetition=1
+Assigned runID=ReportingInterval-6-20260914-04:17:49-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.4e-05s (0m 00s)  0% completed  (24% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #108544   t=475.40295063396   Elapsed: 2.00097s (0m 02s)  26% completed  (25% total)
+     Speed:     ev/sec=54246.4   simsec/sec=237.587   ev/simsec=228.322
+     Messages:  created: 155523   present: 436   in FES: 50
+** Event #215296   t=941.003649782939   Elapsed: 4.00343s (0m 04s)  52% completed  (26% total)
+     Speed:     ev/sec=53310.7   simsec/sec=232.515   ev/simsec=229.278
+     Messages:  created: 307746   present: 432   in FES: 45
+** Event #322304   t=1410.241305409897   Elapsed: 6.00554s (0m 06s)  78% completed  (27% total)
+     Speed:     ev/sec=53447.6   simsec/sec=234.371   ev/simsec=228.046
+     Messages:  created: 460234   present: 407   in FES: 38
+** Event #409564   t=1800   Elapsed: 7.68969s (0m 07s)  100% completed  (28% total)
+     Speed:     ev/sec=51811.9   simsec/sec=229.064   ev/simsec=226.19
+     Messages:  created: 585044   present: 388   in FES: 36
+
+<!> Simulation time limit reached -- at t=1800s, event #409564
+
+Calling finish() at end of Run #6...
+
+Preparing for running configuration ReportingInterval, run #7...
+Scenario: $T=5, $repetition=2
+Assigned runID=ReportingInterval-7-20260914-04:17:57-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.8e-05s (0m 00s)  0% completed  (28% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #92672   t=401.123759311053   Elapsed: 2.00337s (0m 02s)  22% completed  (28% total)
+     Speed:     ev/sec=46258.9   simsec/sec=200.226   ev/simsec=231.033
+     Messages:  created: 132843   present: 389   in FES: 34
+** Event #197632   t=870.636674664609   Elapsed: 4.00874s (0m 04s)  48% completed  (29% total)
+     Speed:     ev/sec=52339.4   simsec/sec=234.127   ev/simsec=223.551
+     Messages:  created: 283231   present: 384   in FES: 31
+** Event #301312   t=1325.490799191711   Elapsed: 6.01037s (0m 06s)  73% completed  (30% total)
+     Speed:     ev/sec=51797.7   simsec/sec=227.242   ev/simsec=227.941
+     Messages:  created: 431556   present: 434   in FES: 51
+** Event #404224   t=1785.93643789116   Elapsed: 8.01345s (0m 08s)  99% completed  (31% total)
+     Speed:     ev/sec=51376.8   simsec/sec=229.868   ev/simsec=223.505
+     Messages:  created: 578965   present: 394   in FES: 35
+** Event #406085   t=1800   Elapsed: 8.03811s (0m 08s)  100% completed  (32% total)
+     Speed:     ev/sec=75453.3   simsec/sec=406.722   ev/simsec=185.516
+     Messages:  created: 581742   present: 388   in FES: 36
+
+<!> Simulation time limit reached -- at t=1800s, event #406085
+
+Calling finish() at end of Run #7...
+
+Preparing for running configuration ReportingInterval, run #8...
+Scenario: $T=5, $repetition=3
+Assigned runID=ReportingInterval-8-20260914-04:18:06-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.3e-05s (0m 00s)  0% completed  (32% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #107776   t=475.250128301732   Elapsed: 2.00171s (0m 02s)  26% completed  (33% total)
+     Speed:     ev/sec=53842.9   simsec/sec=237.424   ev/simsec=226.78
+     Messages:  created: 154899   present: 419   in FES: 50
+** Event #215552   t=955.252978169197   Elapsed: 4.00721s (0m 04s)  53% completed  (34% total)
+     Speed:     ev/sec=53740.2   simsec/sec=239.343   ev/simsec=224.532
+     Messages:  created: 309308   present: 432   in FES: 51
+** Event #313088   t=1390.074662147867   Elapsed: 6.01164s (0m 06s)  77% completed  (35% total)
+     Speed:     ev/sec=48660   simsec/sec=216.929   ev/simsec=224.313
+     Messages:  created: 448940   present: 389   in FES: 34
+** Event #404028   t=1800   Elapsed: 7.6972s (0m 07s)  100% completed  (36% total)
+     Speed:     ev/sec=53952.1   simsec/sec=240.741   ev/simsec=224.109
+     Messages:  created: 579416   present: 388   in FES: 36
+
+<!> Simulation time limit reached -- at t=1800s, event #404028
+
+Calling finish() at end of Run #8...
+
+Preparing for running configuration ReportingInterval, run #9...
+Scenario: $T=5, $repetition=4
+Assigned runID=ReportingInterval-9-20260914-04:18:14-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.6e-05s (0m 00s)  0% completed  (36% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #98048   t=425.904558482269   Elapsed: 2.00362s (0m 02s)  23% completed  (36% total)
+     Speed:     ev/sec=48936.3   simsec/sec=212.569   ev/simsec=230.214
+     Messages:  created: 140697   present: 396   in FES: 37
+** Event #186880   t=820.602678113518   Elapsed: 4.00739s (0m 04s)  45% completed  (37% total)
+     Speed:     ev/sec=44332.4   simsec/sec=196.978   ev/simsec=225.063
+     Messages:  created: 267798   present: 391   in FES: 32
+** Event #265472   t=1170.229402766608   Elapsed: 6.00942s (0m 06s)  65% completed  (38% total)
+     Speed:     ev/sec=39256   simsec/sec=174.635   ev/simsec=224.788
+     Messages:  created: 380215   present: 385   in FES: 32
+** Event #350208   t=1555.229722360348   Elapsed: 8.01253s (0m 08s)  86% completed  (39% total)
+     Speed:     ev/sec=42302.2   simsec/sec=192.201   ev/simsec=220.093
+     Messages:  created: 501860   present: 416   in FES: 45
+** Event #405679   t=1800   Elapsed: 9.30163s (0m 09s)  100% completed  (40% total)
+     Speed:     ev/sec=43030.2   simsec/sec=186.71   ev/simsec=230.465
+     Messages:  created: 581248   present: 388   in FES: 36
+
+<!> Simulation time limit reached -- at t=1800s, event #405679
+
+Calling finish() at end of Run #9...
+
+Preparing for running configuration ReportingInterval, run #10...
+Scenario: $T=10, $repetition=0
+Assigned runID=ReportingInterval-10-20260914-04:18:24-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.6e-05s (0m 00s)  0% completed  (40% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #69376   t=490.389598208569   Elapsed: 2.00468s (0m 02s)  27% completed  (41% total)
+     Speed:     ev/sec=34607.7   simsec/sec=244.623   ev/simsec=141.473
+     Messages:  created: 97315   present: 405   in FES: 38
+** Event #144896   t=1030.388958141856   Elapsed: 4.00602s (0m 04s)  57% completed  (42% total)
+     Speed:     ev/sec=37734.8   simsec/sec=269.819   ev/simsec=139.852
+     Messages:  created: 203052   present: 415   in FES: 42
+** Event #238336   t=1700.627820196743   Elapsed: 6.00941s (0m 06s)  94% completed  (43% total)
+     Speed:     ev/sec=46640.9   simsec/sec=334.552   ev/simsec=139.413
+     Messages:  created: 333591   present: 401   in FES: 38
+** Event #250590   t=1800   Elapsed: 6.2179s (0m 06s)  100% completed  (44% total)
+     Speed:     ev/sec=58769.4   simsec/sec=432.849   ev/simsec=135.773
+     Messages:  created: 350852   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #250590
+
+Calling finish() at end of Run #10...
+
+Preparing for running configuration ReportingInterval, run #11...
+Scenario: $T=10, $repetition=1
+Assigned runID=ReportingInterval-11-20260914-04:18:31-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.2e-05s (0m 00s)  0% completed  (44% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #103168   t=730.393032648036   Elapsed: 2.00263s (0m 02s)  40% completed  (45% total)
+     Speed:     ev/sec=51517   simsec/sec=364.719   ev/simsec=141.251
+     Messages:  created: 144680   present: 384   in FES: 29
+** Event #206080   t=1480.397541566034   Elapsed: 4.00723s (0m 04s)  82% completed  (47% total)
+     Speed:     ev/sec=51337.9   simsec/sec=374.142   ev/simsec=137.215
+     Messages:  created: 288906   present: 436   in FES: 49
+** Event #249710   t=1800   Elapsed: 4.8109s (0m 04s)  100% completed  (48% total)
+     Speed:     ev/sec=54286.8   simsec/sec=386.502   ev/simsec=140.457
+     Messages:  created: 349980   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #249710
+
+Calling finish() at end of Run #11...
+
+Preparing for running configuration ReportingInterval, run #12...
+Scenario: $T=10, $repetition=2
+Assigned runID=ReportingInterval-12-20260914-04:18:36-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.2e-05s (0m 00s)  0% completed  (48% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #97792   t=710.159868583342   Elapsed: 2.00252s (0m 02s)  39% completed  (49% total)
+     Speed:     ev/sec=48835.1   simsec/sec=354.634   ev/simsec=137.706
+     Messages:  created: 137697   present: 384   in FES: 29
+** Event #200192   t=1460.126032411321   Elapsed: 4.00601s (0m 04s)  81% completed  (51% total)
+     Speed:     ev/sec=51111.1   simsec/sec=374.332   ev/simsec=136.539
+     Messages:  created: 281319   present: 396   in FES: 35
+** Event #245265   t=1800   Elapsed: 4.83099s (0m 04s)  100% completed  (52% total)
+     Speed:     ev/sec=54633.7   simsec/sec=401.022   ev/simsec=136.236
+     Messages:  created: 344789   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #245265
+
+Calling finish() at end of Run #12...
+
+Preparing for running configuration ReportingInterval, run #13...
+Scenario: $T=10, $repetition=3
+Assigned runID=ReportingInterval-13-20260914-04:18:41-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.8e-05s (0m 00s)  0% completed  (52% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #61952   t=445.442471847906   Elapsed: 2.00169s (0m 02s)  24% completed  (52% total)
+     Speed:     ev/sec=30950.5   simsec/sec=222.535   ev/simsec=139.082
+     Messages:  created: 87377   present: 431   in FES: 48
+** Event #159232   t=1165.130482504983   Elapsed: 4.00286s (0m 04s)  64% completed  (54% total)
+     Speed:     ev/sec=48611.6   simsec/sec=359.634   ev/simsec=135.17
+     Messages:  created: 224162   present: 416   in FES: 45
+** Event #244062   t=1800   Elapsed: 5.85711s (0m 05s)  100% completed  (56% total)
+     Speed:     ev/sec=45748.4   simsec/sec=337.455   ev/simsec=135.569
+     Messages:  created: 343483   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #244062
+
+Calling finish() at end of Run #13...
+
+Preparing for running configuration ReportingInterval, run #14...
+Scenario: $T=10, $repetition=4
+Assigned runID=ReportingInterval-14-20260914-04:18:48-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.4e-05s (0m 00s)  0% completed  (56% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #73728   t=525.617869523835   Elapsed: 2.0004s (0m 02s)  29% completed  (57% total)
+     Speed:     ev/sec=36857.4   simsec/sec=262.758   ev/simsec=140.271
+     Messages:  created: 103895   present: 417   in FES: 44
+** Event #161280   t=1170.148186040327   Elapsed: 4.00458s (0m 04s)  65% completed  (58% total)
+     Speed:     ev/sec=43684.9   simsec/sec=321.594   ev/simsec=135.838
+     Messages:  created: 226703   present: 397   in FES: 36
+** Event #237056   t=1725.628189693612   Elapsed: 6.0087s (0m 06s)  95% completed  (59% total)
+     Speed:     ev/sec=37809.9   simsec/sec=277.167   ev/simsec=136.415
+     Messages:  created: 333210   present: 382   in FES: 30
+** Event #246063   t=1800   Elapsed: 6.31169s (0m 06s)  100% completed  (60% total)
+     Speed:     ev/sec=29724.8   simsec/sec=215.489   ev/simsec=137.942
+     Messages:  created: 345941   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #246063
+
+Calling finish() at end of Run #14...
+
+Preparing for running configuration ReportingInterval, run #15...
+Scenario: $T=30, $repetition=0
+Assigned runID=ReportingInterval-15-20260914-04:18:55-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 4.1e-05s (0m 00s)  0% completed  (60% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #70912   t=965.624843696397   Elapsed: 2.00954s (0m 02s)  53% completed  (62% total)
+     Speed:     ev/sec=35288.3   simsec/sec=480.522   ev/simsec=73.4374
+     Messages:  created: 96781   present: 386   in FES: 34
+** Event #129644   t=1800   Elapsed: 3.54482s (0m 03s)  100% completed  (64% total)
+     Speed:     ev/sec=38254.4   simsec/sec=524.499   ev/simsec=72.9352
+     Messages:  created: 176669   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #129644
+
+Calling finish() at end of Run #15...
+
+Preparing for running configuration ReportingInterval, run #16...
+Scenario: $T=30, $repetition=1
+Assigned runID=ReportingInterval-16-20260914-04:19:00-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 4.5e-05s (0m 00s)  0% completed  (64% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #82432   t=1140.241624976264   Elapsed: 2.00488s (0m 02s)  63% completed  (66% total)
+     Speed:     ev/sec=41116.5   simsec/sec=568.738   ev/simsec=72.2943
+     Messages:  created: 112471   present: 422   in FES: 45
+** Event #129846   t=1800   Elapsed: 3.0151s (0m 03s)  100% completed  (68% total)
+     Speed:     ev/sec=46933.5   simsec/sec=624.396   ev/simsec=75.1662
+     Messages:  created: 176811   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #129846
+
+Calling finish() at end of Run #16...
+
+Preparing for running configuration ReportingInterval, run #17...
+Scenario: $T=30, $repetition=2
+Assigned runID=ReportingInterval-17-20260914-04:19:03-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 2.8e-05s (0m 00s)  0% completed  (68% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #88064   t=1230.326073203477   Elapsed: 2.00214s (0m 02s)  68% completed  (70% total)
+     Speed:     ev/sec=43985.8   simsec/sec=614.51   ev/simsec=71.5786
+     Messages:  created: 120417   present: 389   in FES: 34
+** Event #127206   t=1800   Elapsed: 3.00605s (0m 03s)  100% completed  (72% total)
+     Speed:     ev/sec=38988.6   simsec/sec=538.532   ev/simsec=72.3979
+     Messages:  created: 173858   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #127206
+
+Calling finish() at end of Run #17...
+
+Preparing for running configuration ReportingInterval, run #18...
+Scenario: $T=30, $repetition=3
+Assigned runID=ReportingInterval-18-20260914-04:19:07-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 4.1e-05s (0m 00s)  0% completed  (72% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #90368   t=1265.257682039774   Elapsed: 2.00072s (0m 02s)  70% completed  (74% total)
+     Speed:     ev/sec=45168.5   simsec/sec=632.405   ev/simsec=71.4234
+     Messages:  created: 123979   present: 416   in FES: 45
+** Event #125862   t=1800   Elapsed: 2.73023s (0m 02s)  100% completed  (76% total)
+     Speed:     ev/sec=48653.1   simsec/sec=693.065   ev/simsec=70.2
+     Messages:  created: 172483   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #125862
+
+Calling finish() at end of Run #18...
+
+Preparing for running configuration ReportingInterval, run #19...
+Scenario: $T=30, $repetition=4
+Assigned runID=ReportingInterval-19-20260914-04:19:10-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.8e-05s (0m 00s)  0% completed  (76% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #93440   t=1320.009736083857   Elapsed: 2.00507s (0m 02s)  73% completed  (78% total)
+     Speed:     ev/sec=46602.8   simsec/sec=658.342   ev/simsec=70.7881
+     Messages:  created: 127932   present: 386   in FES: 33
+** Event #127397   t=1800   Elapsed: 2.71056s (0m 02s)  100% completed  (80% total)
+     Speed:     ev/sec=48130.5   simsec/sec=639.141   ev/simsec=75.3051
+     Messages:  created: 174265   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #127397
+
+Calling finish() at end of Run #19...
+
+Preparing for running configuration ReportingInterval, run #20...
+Scenario: $T=60, $repetition=0
+Assigned runID=ReportingInterval-20-20260914-04:19:13-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.7e-05s (0m 00s)  0% completed  (80% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #86272   t=1470.478306045634   Elapsed: 2.0033s (0m 02s)  81% completed  (83% total)
+     Speed:     ev/sec=43065.7   simsec/sec=734.032   ev/simsec=58.67
+     Messages:  created: 115058   present: 425   in FES: 45
+** Event #103462   t=1800   Elapsed: 2.36297s (0m 02s)  100% completed  (84% total)
+     Speed:     ev/sec=47792   simsec/sec=835.087   ev/simsec=57.2299
+     Messages:  created: 137911   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #103462
+
+Calling finish() at end of Run #20...
+
+Preparing for running configuration ReportingInterval, run #21...
+Scenario: $T=60, $repetition=1
+Assigned runID=ReportingInterval-21-20260914-04:19:16-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.8e-05s (0m 00s)  0% completed  (84% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #96256   t=1625.850440884294   Elapsed: 2.00383s (0m 02s)  90% completed  (87% total)
+     Speed:     ev/sec=48036.7   simsec/sec=811.375   ev/simsec=59.2041
+     Messages:  created: 128495   present: 433   in FES: 50
+** Event #104080   t=1800   Elapsed: 2.18354s (0m 02s)  100% completed  (88% total)
+     Speed:     ev/sec=43533.7   simsec/sec=807.455   ev/simsec=53.9147
+     Messages:  created: 138845   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #104080
+
+Calling finish() at end of Run #21...
+
+Preparing for running configuration ReportingInterval, run #22...
+Scenario: $T=60, $repetition=2
+Assigned runID=ReportingInterval-22-20260914-04:19:19-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 1.3e-05s (0m 00s)  0% completed  (88% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #88320   t=1560.15964344272   Elapsed: 2.00282s (0m 02s)  86% completed  (91% total)
+     Speed:     ev/sec=44098.6   simsec/sec=778.987   ev/simsec=56.6102
+     Messages:  created: 118166   present: 388   in FES: 33
+** Event #101900   t=1800   Elapsed: 2.31176s (0m 02s)  100% completed  (92% total)
+     Speed:     ev/sec=43953.2   simsec/sec=681.919   ev/simsec=64.4552
+     Messages:  created: 136265   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #101900
+
+Calling finish() at end of Run #22...
+
+Preparing for running configuration ReportingInterval, run #23...
+Scenario: $T=60, $repetition=3
+Assigned runID=ReportingInterval-23-20260914-04:19:22-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 2.7e-05s (0m 00s)  0% completed  (92% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #88064   t=1560.574848353243   Elapsed: 2.00456s (0m 02s)  86% completed  (95% total)
+     Speed:     ev/sec=43932.6   simsec/sec=778.517   ev/simsec=56.4311
+     Messages:  created: 118230   present: 404   in FES: 45
+** Event #100422   t=1800   Elapsed: 2.28108s (0m 02s)  100% completed  (96% total)
+     Speed:     ev/sec=44688   simsec/sec=759.94   ev/simsec=58.8047
+     Messages:  created: 134563   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #100422
+
+Calling finish() at end of Run #23...
+
+Preparing for running configuration ReportingInterval, run #24...
+Scenario: $T=60, $repetition=4
+Assigned runID=ReportingInterval-24-20260914-04:19:25-7516
+Setting up network "SmartHomeNetwork"...
+Initializing...
+
+Running simulation...
+** Event #0   t=0   Elapsed: 3.2e-05s (0m 00s)  0% completed  (96% total)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 397   present: 397   in FES: 52
+** Event #95744   t=1680.916524264363   Elapsed: 2.00488s (0m 02s)  93% completed  (99% total)
+     Speed:     ev/sec=47756.2   simsec/sec=838.417   ev/simsec=56.96
+     Messages:  created: 128305   present: 430   in FES: 58
+** Event #101213   t=1800   Elapsed: 2.13403s (0m 02s)  100% completed  (100% total)
+     Speed:     ev/sec=42340.3   simsec/sec=696.913   ev/simsec=60.7541
+     Messages:  created: 135362   present: 380   in FES: 28
+
+<!> Simulation time limit reached -- at t=1800s, event #101213
+
+Calling finish() at end of Run #24...
+
+Run statistics: total 25, successful 25
+
+End.
